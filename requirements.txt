@@ -1,0 +1,18 @@
+# Django packages
+Django==4.0
+django-crispy-forms==1.11.2
+django-import-export==2.7.1
+
+# Django Tailwind
+django-tailwind==3.1.1
+crispy-tailwind==0.5.0
+
+# DATA
+Pillow==8.4.0
+## Library to read/write Excel
+openpyxl~=3.0.7
+xlrd==1.2.0
+
+# LINTERS
+black==21.9b0
+pre-commit==2.15.0
