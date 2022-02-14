@@ -50,6 +50,7 @@ module.exports = {
               teal: colors.teal,
               cyan: colors.cyan,
               primary: colors.blue,
+              secondary: colors.gray,
             },
             fontFamily: {
                 sans: ['Inter var', defaultTheme.fontFamily.sans],
