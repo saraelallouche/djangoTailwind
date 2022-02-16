@@ -221,6 +221,7 @@ repos:
           pass_filenames: false
           language: system
 ```
+Run: `pre-commit install`
 Finally, run the following command: `pre-commit autoupdate`
 
 <br><br>
