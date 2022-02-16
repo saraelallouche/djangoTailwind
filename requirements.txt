@@ -1,18 +1,28 @@
 # Django packages
-Django==4.0
-django-crispy-forms==1.11.2
+Django==4.0.2
 django-import-export==2.7.1
-
-# Django Tailwind
-django-tailwind==3.1.1
-crispy-tailwind==0.5.0
-
-# DATA
-Pillow==8.4.0
-## Library to read/write Excel
-openpyxl~=3.0.7
-xlrd==1.2.0
 
 # LINTERS
 black==21.9b0
 pre-commit==2.15.0
+
+
+# Tailwind packages
+django-tailwind==3.1.1
+django-crispy-forms==1.11.2
+crispy-tailwind==0.5.0
+
+
+# UTILS
+Pillow==8.4.0
+openpyxl~=3.0.7 # excel
+xlrd==1.2.0 # excel
+
+# HEROKU DEPLOYMENT
+django-environ==0.8.1
+#dj-database-url==0.3.0
+#dj-static==0.0.6
+gunicorn==19.6.0
+python-decouple==3
+whitenoise
+psycopg2
