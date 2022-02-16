@@ -110,7 +110,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 try:
     DATABASES = {
         "default": {
-            env.db(),
+            env('DATABASE_URL'),
         }
     }
 except:
