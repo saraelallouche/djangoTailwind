@@ -109,9 +109,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # TODO: TO IMPROVE
 try:
     DATABASES = {
-        "default": {
-            "default" : env('DATABASE_URL'),
-        }
+        "default": env.db_url('DATABASE_URL'),
     }
 except:
     DATABASES = {
