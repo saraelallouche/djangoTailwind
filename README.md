@@ -18,15 +18,32 @@
 ```sh
   pip install -r requirements.txt
   ```
-4. Run manage.py
+4. Create .env file in the root level (NPM_BIN_PATH optional for tailwind)
 ```sh
-  python manage.py runserver
+  SECRET_KEY='django-insecure-@+@%xgdyp_e%!(=3a0i1g=t)h1n-plm_#o(j$m(qr@#ms30f_-'
+  ALLOWED_HOSTS="*"
+  DEBUG=True
+  NPM_BIN_PATH=r"D:\nodejs\npm.cmd"
   ```
 
-4. Open your browser and go to [http://127.0.0.1:8000/index](http://127.0.0.1:8000/index)
-<br><br>
+5. Run ./run_manage.sh script
+```sh
+  ./run_manage.sh
+  ```
 
-5. Admin page url: [http://127.0.0.1:8000/adminjlk/](http://127.0.0.1:8000/adminjlk/)
+6. Install precommit and test it in commit
+```sh
+  pre-commit install
+  ```
+
+7. Install and test django-tailwind package
+```sh
+  python manage.py tailwind install
+  python manage.py tailwind start
+  ```
+
+
+8. Admin page in url: [http://127.0.0.1:8000/adminjlk/](http://127.0.0.1:8000/adminjlk/)
 
 <br>
 
