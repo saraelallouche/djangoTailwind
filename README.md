@@ -142,7 +142,7 @@ Please always use environments and adapt to be inline with requirements.txt
 %
   ```
 <br/><br/>
-
+.
 
 ## .gitignore
 
