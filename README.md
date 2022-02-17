@@ -39,7 +39,8 @@
     python manage.py runserver
     ```
             OR
-6. Collectstatic, Migrate and Runserver at the same time by
+
+- Collectstatic, Migrate and Runserver at the same time by
      ```
     ./run_manage.sh
     ```
