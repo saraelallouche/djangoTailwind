@@ -20,19 +20,19 @@
 3. Activate the environment(example:powershell)
     ```sh
     .venv/Scripts/Activate.PS1
-    ```
+   ```
 4. Install the libraries
-    ```sh
-    pip install -r requirements.txt
+    ```
+        pip install -r requirements.txt
     ```
 
 -    If needed : For Windows add the line below in setting.py
     ```sh
-    NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
+        NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
     ```
 5. Install Tailwind
-    ```sh
-    python manage.py tailwind start
+    ```
+        python manage.py tailwind start
     ```
 6. Run manage.py
     ```sh
