@@ -13,12 +13,17 @@
 
 1. Clone the official repo [templateDjangoTailwind]( https://github.com/jlkhermes38/templateDjangoTailwind)
 
-2. Create your environment (cf. Useful commands section)
-3. Install the libraries
+   1. Create & activate your environment. For instance in windows:
+       ```
+      py -m venv .venv
+      .venv/Scripts/Activate.PS1
+       ```
+
+2. Install the libraries
 ```sh
   pip install -r requirements.txt
   ```
-4. Create .env file in the root level (NPM_BIN_PATH optional for tailwind)
+4. Create .env file in the root level (NPM_BIN_PATH optional for tailwind and according local configuration)
 ```sh
   SECRET_KEY='django-insecure-@+@%xgdyp_e%!(=3a0i1g=t)h1n-plm_#o(j$m(qr@#ms30f_-'
   ALLOWED_HOSTS="*"
@@ -26,7 +31,7 @@
   NPM_BIN_PATH=r"D:\nodejs\npm.cmd"
   ```
 
-5. Run ./run_manage.sh script
+5. Run ./run_manage.sh script (Collectstatic, Migrate and Runserver at the same time by)
 ```sh
   ./run_manage.sh
   ```
