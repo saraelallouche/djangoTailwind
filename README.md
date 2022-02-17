@@ -14,11 +14,11 @@
 1. Clone the official repo [templateDjangoTailwind]( https://github.com/jlkhermes38/templateDjangoTailwind)
 
 2. Create your environment (cf. Useful commands section)
-    ```sh
+    ```
    py -m venv .venv
   ```
 3. Activate the environment(example:powershell)
-    ```sh
+    ```
     .venv/Scripts/Activate.PS1
    ```
 4. Install the libraries
@@ -27,7 +27,7 @@
     ```
 
 -    If needed : For Windows add the line below in setting.py
-    ```sh
+    ```
         NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
     ```
 5. Install Tailwind
@@ -35,12 +35,12 @@
         python manage.py tailwind start
     ```
 6. Run manage.py
-    ```sh
+    ```
     python manage.py runserver
     ```
             OR
 6. Collectstatic, Migrate and Runserver at the same time by
-     ```sh
+     ```
     ./run_manage.sh
     ```
 
