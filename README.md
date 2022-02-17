@@ -21,14 +21,15 @@
 
 2. Install the libraries
 ```sh
+  python -m pip install --upgrade pip
   pip install -r requirements.txt
   ```
 4. Create .env file in the root level (NPM_BIN_PATH optional for tailwind and according local configuration)
 ```sh
-  SECRET_KEY='django-insecure-@+@%xgdyp_e%!(=3a0i1g=t)h1n-plm_#o(j$m(qr@#ms30f_-'
-  ALLOWED_HOSTS="*"
-  DEBUG=True
-  NPM_BIN_PATH=r"D:\nodejs\npm.cmd"
+SECRET_KEY='django-insecure-@+@%xgdyp_e%!(=3a0i1g=t)h1n-plm_#o(j$m(qr@#ms30f_-'
+ALLOWED_HOSTS="*"
+DEBUG=True
+NPM_BIN_PATH=r"D:\nodejs\npm.cmd"
   ```
 
 5. Run ./run_manage.sh script (Collectstatic, Migrate and Runserver at the same time by)
@@ -49,6 +50,30 @@
 
 
 8. Admin page in url: [http://127.0.0.1:8000/adminjlk/](http://127.0.0.1:8000/adminjlk/)
+
+9. Associate and push with the private github repo
+```sh
+git init
+git commit -m "first commit"
+git remote rm origin
+git remote add origin https://github.com/jlkhermes38/my_repo.git
+git push -u origin main
+```
+
+10. Heroku deployment
+```sh
+heroku login
+heroku create --org datoscout --app datoscout-template
+heroku git:remote -a datoscout-template
+-> config SECRET_KEY & ALLOWED_HOST in Heroku template (TODO: put image)
+heroku addons:create heroku-postgresql:hobby-dev
+./run_manage_heroku.sh
+    git push heroku main
+    heroku run python manage.py makemigrations
+    heroku run python manage.py migrate
+heroku run python manage.py createsuperuser
+```
+
 
 <br>
 
