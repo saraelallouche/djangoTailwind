@@ -18,3 +18,7 @@ class FormLayoutsPageView(TemplateView):
 
 class ContentSectionsPageView(TemplateView):
     template_name = "content.html"
+
+
+class FeaturesSectionsPageView(TemplateView):
+    template_name = "features.html"

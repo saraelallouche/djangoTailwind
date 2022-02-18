@@ -4,6 +4,7 @@ from .views import (
     HeroSectionsPageView,
     FormLayoutsPageView,
     ContentSectionsPageView,
+    FeaturesSectionsPageView,
 )
 
 urlpatterns = [
@@ -11,4 +12,5 @@ urlpatterns = [
     path("hero_sections", HeroSectionsPageView.as_view(), name="hero_sections"),
     path("form_layouts", FormLayoutsPageView.as_view(), name="form_layout"),
     path("content", ContentSectionsPageView.as_view(), name="content"),
+    path("features", FeaturesSectionsPageView.as_view(), name="features"),
 ]
