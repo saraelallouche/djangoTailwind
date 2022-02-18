@@ -154,15 +154,17 @@ TAILWIND_CSS_PATH = "css/dist/styles.css"
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
-
-NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
+try:
+    NPM_BIN_PATH = env("NPM_BIN_PATH")
+except:
+    pass
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = "static/"
-STATIC_ROOT = "static/"
-# STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATIC_ROOT = "static_cdn/"
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 

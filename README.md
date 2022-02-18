@@ -13,42 +13,67 @@
 
 1. Clone the official repo [templateDjangoTailwind]( https://github.com/jlkhermes38/templateDjangoTailwind)
 
-2. Create your environment (cf. Useful commands section)
-    ```
-   py -m venv .venv
+   1. Create & activate your environment. For instance in windows:
+       ```
+      py -m venv .venv
+      .venv/Scripts/Activate.PS1
+       ```
+
+2. Install the libraries
+```sh
+  python -m pip install --upgrade pip
+  pip install -r requirements.txt
   ```
-3. Activate the environment(example:powershell)
-    ```
-    .venv/Scripts/Activate.PS1
-   ```
-4. Install the libraries
-    ```
-        pip install -r requirements.txt
-    ```
+4. Create .env file in the root level (NPM_BIN_PATH optional for tailwind and according local configuration)
+```sh
+SECRET_KEY='django-insecure-@+@%xgdyp_e%!(=3a0i1g=t)h1n-plm_#o(j$m(qr@#ms30f_-'
+ALLOWED_HOSTS="*"
+DEBUG=True
+NPM_BIN_PATH=r"D:\nodejs\npm.cmd"
+  ```
 
--    If needed : For Windows add the line below in setting.py
-    ```
-        NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
-    ```
-5. Install Tailwind
-    ```
-        python manage.py tailwind start
-    ```
-6. Run manage.py
-    ```
-    python manage.py runserver
-    ```
-            OR
+5. Run ./run_manage.sh script (Collectstatic, Migrate and Runserver at the same time by)
+```sh
+  ./run_manage.sh
+  ```
 
-- Collectstatic, Migrate and Runserver at the same time by
-     ```
-    ./run_manage.sh
-    ```
+6. Install precommit and test it in commit
+```sh
+  pre-commit install
+  ```
 
-7. Open your browser and go to [http://127.0.0.1:8000/index](http://127.0.0.1:8000/index)
-<br><br>
+7. Install and test django-tailwind package
+```sh
+  python manage.py tailwind install
+  python manage.py tailwind start
+  ```
 
-8. Admin page url: [http://127.0.0.1:8000/adminjlk/](http://127.0.0.1:8000/adminjlk/)
+
+8. Admin page in url: [http://127.0.0.1:8000/adminjlk/](http://127.0.0.1:8000/adminjlk/)
+
+9. Associate and push with the private github repo
+```sh
+git init
+git commit -m "first commit"
+git remote rm origin
+git remote add origin https://github.com/jlkhermes38/my_repo.git
+git push -u origin main
+```
+
+10. Heroku deployment
+```sh
+heroku login
+heroku create --org datoscout --app datoscout-template
+heroku git:remote -a datoscout-template
+-> config SECRET_KEY & ALLOWED_HOST in Heroku template (TODO: put image)
+heroku addons:create heroku-postgresql:hobby-dev
+./run_manage_heroku.sh
+    git push heroku main
+    heroku run python manage.py makemigrations
+    heroku run python manage.py migrate
+heroku run python manage.py createsuperuser
+```
+
 
 <br>
 
@@ -117,7 +142,7 @@ Please always use environments and adapt to be inline with requirements.txt
 %
   ```
 <br/><br/>
-
+.
 
 ## .gitignore
 
