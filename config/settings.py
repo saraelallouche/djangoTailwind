@@ -155,7 +155,7 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 try:
-    NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
+    NPM_BIN_PATH = env("NPM_BIN_PATH")
 except:
     pass
 
