@@ -1,7 +1,12 @@
+from django.http.response import HttpResponse
 from django.shortcuts import render
-
-# Create your views here.
 from django.views.generic import TemplateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView
+from .models import CustomUser
+
+# from .forms import CustomUserCreateForm
+from django.urls import reverse_lazy
 
 
 class HomePageView(TemplateView):
@@ -22,3 +27,37 @@ class ContentSectionsPageView(TemplateView):
 
 class FeaturesSectionsPageView(TemplateView):
     template_name = "features.html"
+
+
+class CustomUserAddView(CreateView):
+    model = CustomUser
+    template_name = "user/add_user.html"
+    fields = "__all__"
+
+    # def form_valid(self, form):
+
+    #     return super().form_valid(form)
+
+
+class CustomUserDetailView(DetailView):
+    model = CustomUser
+    template_name = "user_detail.html"
+
+
+class CustomUserListView(ListView):
+    model = CustomUser
+    template_name = "user/user_list.html"
+    context_object_name = "user_list"
+
+
+class CustomUserUpdateView(UpdateView):
+    model = CustomUser
+    template_name = "user/edit_user.html"
+    context_object_name = "edit_user"
+    fields = "__all__"
+
+
+class CustomUserDeleteView(DeleteView):
+    model = CustomUser
+    template_name = "user/delete_user.html"
+    success_url = reverse_lazy("user_list")
