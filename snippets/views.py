@@ -5,6 +5,11 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from .models import CustomUser
 
+import logging
+
+
+logger = logging.getLogger(__name__)
+
 # from .forms import CustomUserCreateForm
 from django.urls import reverse_lazy
 
@@ -34,9 +39,11 @@ class CustomUserAddView(CreateView):
     template_name = "user/add_user.html"
     fields = "__all__"
 
-    # def form_valid(self, form):
-
-    #     return super().form_valid(form)
+    def form_invalid(self, form):
+        logger.info("form_invalid called")
+        form.instance.user = self.request.user
+        print(form.errors)
+        return super(CustomUserAddView, self).form_invalid(form)
 
 
 class CustomUserDetailView(DetailView):

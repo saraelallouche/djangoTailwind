@@ -9,7 +9,7 @@ class CustomUser(models.Model):
     last_updated = models.DateTimeField(auto_now=True, editable=False)
     username = models.CharField(max_length=30)
     about = models.TextField(max_length=150)
-    image = models.ImageField(upload_to="static_cdn/admin/img")
+    # image = models.ImageField(upload_to="static_cdn/admin/img", null=True)
     firstname = models.CharField(max_length=30)
     lastname = models.CharField(max_length=30)
     email = models.CharField(max_length=50)
@@ -38,5 +38,5 @@ class CustomUser(models.Model):
     def __str__(self):
         return self.username
 
-    def get_absolute_url(self):  # new
+    def get_absolute_url(self):
         return reverse("user_detail", args=[str(self.pk)])

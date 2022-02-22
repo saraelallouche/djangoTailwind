@@ -10,7 +10,7 @@ class CustomUserCreateForm(forms.Form):
 
         username = forms.CharField(max_length=30)
         about = forms.CharField(max_length=150)
-        image = forms.ImageField(upload_to="static_cdn/admin/img")
+        # image = forms.ImageField(upload_to="static_cdn/admin/img")
         firstname = forms.CharField(max_length=30)
         lastname = forms.CharField(max_length=30)
         email = forms.CharField(max_length=50)
