@@ -1,15 +1,19 @@
 from django.urls import path
-from .views import (
+from .views.templateview import (
     HomePageView,
     HeroSectionsPageView,
     FormLayoutsPageView,
     ContentSectionsPageView,
     FeaturesSectionsPageView,
+)
+from .views.customuser import (
     CustomUserAddView,
     CustomUserListView,
     CustomUserUpdateView,
     CustomUserDeleteView,
 )
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path("", HomePageView.as_view(), name="home"),
@@ -17,9 +21,12 @@ urlpatterns = [
     path("form_layouts", FormLayoutsPageView.as_view(), name="form_layout"),
     path("content", ContentSectionsPageView.as_view(), name="content"),
     path("features", FeaturesSectionsPageView.as_view(), name="features"),
-    path("user/add", CustomUserAddView.as_view(), name="add_user"),
+    # CustomUser
+    path("user/add", CustomUserAddView.as_view(), name="user_add"),
     path("user/list", CustomUserListView.as_view(), name="user_list"),
     path("userdetail/<int:pk>", CustomUserListView.as_view(), name="user_detail"),
-    path("user/<int:pk>/edit", CustomUserUpdateView.as_view(), name="edit_user"),
-    path("user/<int:pk>/delete", CustomUserDeleteView.as_view(), name="delete_user"),
+    path("user/<int:pk>/edit", CustomUserUpdateView.as_view(), name="user_edit"),
+    path("user/<int:pk>/delete", CustomUserDeleteView.as_view(), name="user_delete"),
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
