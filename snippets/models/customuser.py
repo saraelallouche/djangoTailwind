@@ -1,6 +1,7 @@
+from typing_extensions import Required
 from django.db import models
 from django.urls import reverse
-from django.contrib.auth.models import User
+from django.core.validators import FileExtensionValidator
 
 
 class CustomUser(models.Model):
@@ -9,7 +10,12 @@ class CustomUser(models.Model):
     last_updated = models.DateTimeField(auto_now=True, editable=False)
     username = models.CharField(max_length=30)
     about = models.TextField(max_length=150)
-    image = models.ImageField(upload_to="images", null=True, blank=True)
+    image = models.ImageField(
+        upload_to="media",
+        null=True,
+        blank=True,
+        validators=[FileExtensionValidator(["jpg", "png", "jpeg"])],
+    )
     firstname = models.CharField(max_length=30)
     lastname = models.CharField(max_length=30)
     email = models.CharField(max_length=50)
@@ -34,7 +40,11 @@ class CustomUser(models.Model):
         ("2", "No push notifications"),
     )
     notifications = models.CharField(
-        max_length=2, choices=options, null=True, blank=True, default=""
+        max_length=1,
+        choices=options,
+        null=True,
+        blank=True,
+        default="",
     )
 
     def __str__(self):

@@ -2,6 +2,7 @@ from django.urls.base import reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from ..models.customuser import CustomUser
+from django.urls import reverse
 import logging
 
 
@@ -13,11 +14,15 @@ class CustomUserAddView(CreateView):
     template_name = "user/add_user.html"
     fields = "__all__"
 
-    def form_invalid(self, form):
-        logger.info("form_invalid called")
-        form.instance.user = self.request.user
-        print(form.errors)
-        return super(CustomUserAddView, self).form_invalid(form)
+    # def form_invalid(self, form):
+    #     logger.info("form_invalid called")
+    #     form.instance.user = self.request.user
+    #     print(form.errors)
+    #     return super(CustomUserAddView, self).form_invalid(form)
+
+
+def get_success_url(self):
+    return reverse("transaction_list", kwargs={"pk": self.kwargs["pk"]})
 
 
 class CustomUserDetailView(DetailView):

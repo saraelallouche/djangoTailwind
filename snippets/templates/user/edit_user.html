@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
+    {% comment %}
+ <form action="" method="post" novalidate enctype="multipart/form-data" class="space-y-8 divide-y divide-gray-200">
+        {% csrf_token %}
+    {{ form.as_p }}
+    </Form> {% endcomment %}
 
     <div class="" style="">
         <div class="bg-white">

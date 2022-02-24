@@ -58,6 +58,7 @@ EXTERNAL_APPS = [
     "tailwind",
     "theme",
     "django_browser_reload",
+    "import_export",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + EXTERNAL_APPS

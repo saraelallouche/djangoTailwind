@@ -1,15 +1,18 @@
 {% extends "base.html" %}
 
-
-
-
 {% block content %}
+    <!--TO CHECK-->
+
+    {% comment %} <form>
+        {% csrf_token %}
+    {{ form.as_p }}
+    </Form> {% endcomment %}
 
     <div class="" >
         <div class="bg-white">
             <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
                 <div class="max-w-3xl mx-auto">
-                    <form action="{% url 'user_add' %}" method="post" novalidate enctype="multipart/form-data" class="space-y-8 divide-y divide-gray-200">
+                    <form action="" method="post" novalidate enctype="multipart/form-data" class="space-y-8 divide-y divide-gray-200">
                         {% csrf_token %}
                         <div class="space-y-8 divide-y divide-gray-200">
                             <div>
