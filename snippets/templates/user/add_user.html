@@ -99,11 +99,13 @@
                                     </div> {% endcomment %}
 
                                     <!--image drag-drop-finishline-->
-                                    <div class="bg-white p7 rounded w-9/12 mx-auto sm:col-span-6">
+
+                                    <!--CURRENT DRAG & DROP THAT WORKS-->
+                                    <div class="bg-white rounded sm:col-span-6">
                                         <div x-data="dataFileDnD()" class="relative flex flex-col p-4 text-gray-400 border border-gray-200 rounded">
                                             <div x-ref="dnd"
-                                                class="relative flex flex-col text-gray-400 border border-gray-200 border-dashed rounded cursor-pointer">
-                                                <input id="{{ form.image.id_for_label }}" name="{{ form.image.html_name }}" type="file"
+                                                class="relative flex flex-col text-gray-400 border border-gray-400 hover:border-green-300 hover:border-1 border-dashed rounded cursor-pointer">
+                                                <input type="file" id="{{ form.image.id_for_label }}" name="{{ form.image.html_name }}" type="file"
                                                     class="absolute inset-0 z-50 w-full h-full p-0 m-0 outline-none opacity-0 cursor-pointer"
                                                     @change="addFiles($event)"
                                                     @dragover="$refs.dnd.classList.add('border-blue-400'); $refs.dnd.classList.add('ring-4'); $refs.dnd.classList.add('ring-inset');"
@@ -112,7 +114,7 @@
                                                     title="" />
 
                                                 <div class="flex flex-col items-center justify-center py-10 text-center">
-                                                    <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                                                    <svg class="mx-auto h-12 w-12 text-gray-400" stroke="#90EE90" fill="none" viewBox="0 0 48 48" aria-hidden="true">
                                                         <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                                     </svg>
                                                     <p class="m-0">Drag your files here or click in this area.</p>
@@ -120,7 +122,7 @@
                                             </div>
 
                                             <template x-if="files.length > 0">
-                                                <div class="grid grid-col gap-2 mt-4 md:grid-cols-2" @drop.prevent="drop($event)"
+                                                <div class="grid grid-cols-2 gap-4 mt-4 md:grid-cols-6" @drop.prevent="drop($event)"
                                                     @dragover.prevent="$event.dataTransfer.dropEffect = 'move'">
                                                     <template x-for="(_, index) in Array.from({ length: files.length })">
                                                         <div class="relative flex flex-col items-center overflow-hidden text-center bg-gray-100 border rounded cursor-move select-none"
@@ -134,31 +136,53 @@
                                                                 </svg>
                                                             </button>
 
+                                                            <template x-if="files[index].type.includes('audio/')">
+                                                                <svg class="absolute w-12 h-12 text-gray-400 transform top-1/2 -translate-y-2/3"
+                                                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                                        d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                                                                </svg>
+                                                            </template>
+
+                                                            <template x-if="files[index].type.includes('application/') || files[index].type === ''">
+                                                                <svg class="absolute w-12 h-12 text-gray-400 transform top-1/2 -translate-y-2/3"
+                                                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                                        d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                                                                </svg>
+                                                            </template>
+
                                                             <template x-if="files[index].type.includes('image/')">
                                                                 <img class="absolute inset-0 z-0 object-cover w-full h-full border-4 border-white preview"
                                                                     x-bind:src="loadFile(files[index])" />
                                                             </template>
 
+                                                            <template x-if="files[index].type.includes('video/')">
+                                                                <video
+                                                                    class="absolute inset-0 object-cover w-full h-full border-4 border-white pointer-events-none preview">
+                                                                    <fileDragging x-bind:src="loadFile(files[index])" type="video/mp4">
+                                                                    </video>
+                                                                </template>
 
-                                                            {% comment %} <div class="absolute bottom-0 left-0 right-0 flex flex-col p-2 text-xs bg-white bg-opacity-50">
-                                                                <span class="w-full font-bold text-gray-900 truncate"
-                                                                    x-text="files[index].name">Loading</span>
-                                                                <span class="text-xs text-gray-900" x-text="humanFileSize(files[index].size)">...</span>
-                                                            </div> {% endcomment %}
+                                                                <div class="absolute bottom-0 left-0 right-0 flex flex-col p-2 text-xs bg-white bg-opacity-50">
+                                                                    <span class="w-full font-bold text-gray-900 truncate"
+                                                                        x-text="files[index].name">Loading</span>
+                                                                    <span class="text-xs text-gray-900" x-text="humanFileSize(files[index].size)">...</span>
+                                                                </div>
 
-                                                            <div class="absolute inset-0 z-40 transition-colors duration-300 " @dragenter="dragenter($event)"
-                                                                @dragleave="fileDropping = null"
-                                                                :class="{'bg-blue-200 bg-opacity-80': fileDropping == index && fileDragging != index}">
+                                                                <div class="absolute inset-0 z-40 transition-colors duration-300" @dragenter="dragenter($event)"
+                                                                    @dragleave="fileDropping = null"
+                                                                    :class="{'bg-blue-200 bg-opacity-80': fileDropping == index && fileDragging != index}">
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </template>
-                                                </div>
-                                            </template>
+                                                        </template>
+                                                    </div>
+                                                </template>
                                             </div>
-                                        </div>
+                                            </div>
 
 
-                                        {% comment %} <div class="sm:col-span-6">
+                                            {% comment %} <div class="sm:col-span-6">
                                         <label for="cover-photo" class="block text-sm font-medium text-gray-700"> Cover photo </label>
                                         <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                                             <div class="space-y-1 text-center">
@@ -179,234 +203,233 @@
                                         </div>
                                     </div> {% endcomment %}
 
-                                    </div>
-                                </div>
-
-                                <div class="pt-8">
-                                    <div>
-                                        <h3 class="text-lg leading-6 font-medium text-gray-900">Personal Information</h3>
-                                        <p class="mt-1 text-sm text-gray-500">Use a permanent address where you can receive mail.</p>
-                                    </div>
-                                    <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-                                        <div class="sm:col-span-3">
-                                            <label for="{{ form.firstname.id_for_label }}" class="block text-sm font-medium text-gray-700">{{form.firstname.label}}</label>
-                                            <div class="mt-1">
-                                                <input type="text" name="{{ form.firstname.html_name }}" id="first-name" autocomplete="given-name" class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 rounded-md">
-                                            </div>
-                                            {% for error in form.firstname.errors %}
-                                                <div class="invalid-feedback d-block text-end"><span class="text-red-500 text-xs italic">{{ error }}</span></div>
-                                            {% endfor %}
-                                        </div>
-
-                                        <div class="sm:col-span-3">
-                                            <label for="{{ form.lastname.id_for_label }}" class="block text-sm font-medium text-gray-700">{{ form.lastname.label }} </label>
-                                            <div class="mt-1">
-                                                <input type="text" name="{{ form.lastname.html_name }}" id="last-name" autocomplete="family-name" class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 rounded-md">
-                                            </div>
-                                            {% for error in form.lastname.errors %}
-                                                <div class="invalid-feedback d-block text-end"><span class="text-red-500 text-xs italic">{{ error }}</span></div>
-                                            {% endfor %}
-                                        </div>
-
-                                        <div class="sm:col-span-4">
-                                            <label for="{{ form.email.id_for_label }}" class="block text-sm font-medium text-gray-700">{{form.email.label}}</label>
-                                            <div class="mt-1">
-                                                <input id="email" name="{{ form.email.html_name }}" type="email" autocomplete="email" class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 rounded-md">
-                                            </div>
-                                            {% for error in form.email.errors %}
-                                                <div class="invalid-feedback d-block text-end"><span class="text-red-500 text-xs italic">{{ error }}</span></div>
-                                            {% endfor %}
-                                        </div>
-
-                                        <div class="sm:col-span-3">
-                                            <label for="{{ form.country.id_for_label }}" class="block text-sm font-medium text-gray-700">{{form.country.label}}</label>
-                                            <div class="mt-1">
-                                                <select id="country" name="country" autocomplete="country-name" value="{{ form.country.value }}"
-                                                    class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 rounded-md">
-                                                    {% for widget in form.country.subwidgets %}
-                                                        {{ widget }}
-                                                    {% endfor %}
-                                                </select>
-                                            </div>
-                                            {% for error in form.country.errors %}
-                                                <div class="invalid-feedback d-block text-end"><span class="text-red-500 text-xs italic">{{ error }}</span></div>
-                                            {% endfor %}
-                                        </div>
-
-                                        <div class="sm:col-span-6">
-                                            <label for="{{ form.address.id_for_label }}" class="block text-sm font-medium text-gray-700">{{form.address.label}} </label>
-                                            <div class="mt-1">
-                                                <input type="text" name="{{ form.address.html_name }}" id="street-address" autocomplete="street-address" class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 rounded-md">
-                                            </div>
-                                            {% for error in form.address.errors %}
-                                                <div class="invalid-feedback d-block text-end"><span class="text-red-500 text-xs italic">{{ error }}</span></div>
-                                            {% endfor %}
-                                        </div>
-
-                                        <div class="sm:col-span-2">
-                                            <label for="{{ form.city.id_for_label }}" class="block text-sm font-medium text-gray-700">{{ form.city.label }}</label>
-                                            <div class="mt-1">
-                                                <input type="text" name="{{ form.city.html_name }}" id="city" autocomplete="address-level2" class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 rounded-md">
-                                            </div>
-                                            {% for error in form.city.errors %}
-                                                <div class="invalid-feedback d-block text-end"><span class="text-red-500 text-xs italic">{{ error }}</span></div>
-                                            {% endfor %}
-                                        </div>
-
-                                        <div class="sm:col-span-2">
-                                            <label for="{{ form.state.id_for_label }}" class="block text-sm font-medium text-gray-700"> {{form.state.label}}</label>
-                                            <div class="mt-1">
-                                                <input type="text" name="{{ form.state.html_name }}" id="region" autocomplete="address-level1" class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 rounded-md">
-                                            </div>
-                                            {% for error in form.state.errors %}
-                                                <div class="invalid-feedback d-block text-end"><span class="text-red-500 text-xs italic">{{ error }}</span></div>
-                                            {% endfor %}
-                                        </div>
-
-                                        <div class="sm:col-span-2">
-                                            <label for="{{form.zipcode.id_for_label}}" class="block text-sm font-medium text-gray-700"> {{form.zipcode.label}} </label>
-                                            <div class="mt-1">
-                                                <input type="number" name="{{ form.zipcode.html_name }}" id="postal-code" autocomplete="postal-code" class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 rounded-md">
-                                            </div>
-                                            {% for error in form.zipcode.errors %}
-                                                <div class="invalid-feedback d-block text-end"><span class="text-red-500 text-xs italic">{{ error }}</span></div>
-                                            {% endfor %}
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="pt-8">
-                                    <div>
-                                        <h3 class="text-lg leading-6 font-medium text-gray-900">Notifications</h3>
-                                        <p class="mt-1 text-sm text-gray-500">We'll always let you know about important changes, but you pick what else you want to hear about.</p>
-                                    </div>
-                                    <div class="mt-6">
-                                        <fieldset>
-                                            <legend class="text-base font-medium text-gray-900">By Email</legend>
-                                            <div class="mt-4 space-y-4">
-                                                <div class="relative flex items-start">
-                                                    <div class="flex items-center h-5">
-                                                        <input id="comments" name="{{ form.by_email_comments.html_name }}" type="checkbox" class="focus:ring-primary-500 h-4 w-4 text-primary-600 border-gray-300 rounded">
-                                                    </div>
-                                                    <div class="ml-3 text-sm">
-                                                        <label for="{{ form.by_email_comments.id_for_label }}" class="font-medium text-gray-700">{{ form.by_email_comments.label }}</label>
-                                                        <p class="text-gray-500">Get notified when someones posts a comment on a posting.</p>
-                                                    </div>
+                                    <div class="pt-8">
+                                        <div>
+                                            <h3 class="text-lg leading-6 font-medium text-gray-900">Personal Information</h3>
+                                            <p class="mt-1 text-sm text-gray-500">Use a permanent address where you can receive mail.</p>
+                                        </div>
+                                        <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                                            <div class="sm:col-span-3">
+                                                <label for="{{ form.firstname.id_for_label }}" class="block text-sm font-medium text-gray-700">{{form.firstname.label}}</label>
+                                                <div class="mt-1">
+                                                    <input type="text" name="{{ form.firstname.html_name }}" id="first-name" autocomplete="given-name" class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 rounded-md">
                                                 </div>
-                                                <div class="relative flex items-start">
-                                                    <div class="flex items-center h-5">
-                                                        <input id="candidates" name="{{ form.by_email_candidates.html_name }}" type="checkbox" class="focus:ring-primary-500 h-4 w-4 text-primary-600 border-gray-300 rounded">
-                                                    </div>
-                                                    <div class="ml-3 text-sm">
-                                                        <label for="{{ form.by_email_candidates.id_for_label }}" class="font-medium text-gray-700">{{ form.by_email_candidates.label }}</label>
-                                                        <p class="text-gray-500">Get notified when a candidate applies for a job.</p>
-                                                    </div>
-                                                </div>
-                                                <div class="relative flex items-start">
-                                                    <div class="flex items-center h-5">
-                                                        <input id="offers" name="{{ form.by_email_offers.html_name }}" type="checkbox" class="focus:ring-primary-500 h-4 w-4 text-primary-600 border-gray-300 rounded">
-                                                    </div>
-                                                    <div class="ml-3 text-sm">
-                                                        <label for="{{ form.by_email_offers.id_for_label }}" class="font-medium text-gray-700">{{ form.by_email_offers.label }}</label>
-                                                        <p class="text-gray-500">Get notified when a candidate accepts or rejects an offer.</p>
-                                                    </div>
-                                                </div>
+                                                {% for error in form.firstname.errors %}
+                                                    <div class="invalid-feedback d-block text-end"><span class="text-red-500 text-xs italic">{{ error }}</span></div>
+                                                {% endfor %}
                                             </div>
-                                        </fieldset>
-                                        <fieldset class="mt-6">
-                                            <div>
-                                                <legend class="text-base font-medium text-gray-900">Push Notifications</legend>
-                                                <p class="text-sm text-gray-500">These are delivered via SMS to your mobile phone.</p>
+
+                                            <div class="sm:col-span-3">
+                                                <label for="{{ form.lastname.id_for_label }}" class="block text-sm font-medium text-gray-700">{{ form.lastname.label }} </label>
+                                                <div class="mt-1">
+                                                    <input type="text" name="{{ form.lastname.html_name }}" id="last-name" autocomplete="family-name" class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                                                </div>
+                                                {% for error in form.lastname.errors %}
+                                                    <div class="invalid-feedback d-block text-end"><span class="text-red-500 text-xs italic">{{ error }}</span></div>
+                                                {% endfor %}
                                             </div>
-                                            {% for choice in form.notifications %}
+
+                                            <div class="sm:col-span-4">
+                                                <label for="{{ form.email.id_for_label }}" class="block text-sm font-medium text-gray-700">{{form.email.label}}</label>
+                                                <div class="mt-1">
+                                                    <input id="email" name="{{ form.email.html_name }}" type="email" autocomplete="email" class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                                                </div>
+                                                {% for error in form.email.errors %}
+                                                    <div class="invalid-feedback d-block text-end"><span class="text-red-500 text-xs italic">{{ error }}</span></div>
+                                                {% endfor %}
+                                            </div>
+
+                                            <div class="sm:col-span-3">
+                                                <label for="{{ form.country.id_for_label }}" class="block text-sm font-medium text-gray-700">{{form.country.label}}</label>
+                                                <div class="mt-1">
+                                                    <select id="country" name="country" autocomplete="country-name" value="{{ form.country.value }}"
+                                                        class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                                                        {% for widget in form.country.subwidgets %}
+                                                            {{ widget }}
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                                {% for error in form.country.errors %}
+                                                    <div class="invalid-feedback d-block text-end"><span class="text-red-500 text-xs italic">{{ error }}</span></div>
+                                                {% endfor %}
+                                            </div>
+
+                                            <div class="sm:col-span-6">
+                                                <label for="{{ form.address.id_for_label }}" class="block text-sm font-medium text-gray-700">{{form.address.label}} </label>
+                                                <div class="mt-1">
+                                                    <input type="text" name="{{ form.address.html_name }}" id="street-address" autocomplete="street-address" class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                                                </div>
+                                                {% for error in form.address.errors %}
+                                                    <div class="invalid-feedback d-block text-end"><span class="text-red-500 text-xs italic">{{ error }}</span></div>
+                                                {% endfor %}
+                                            </div>
+
+                                            <div class="sm:col-span-2">
+                                                <label for="{{ form.city.id_for_label }}" class="block text-sm font-medium text-gray-700">{{ form.city.label }}</label>
+                                                <div class="mt-1">
+                                                    <input type="text" name="{{ form.city.html_name }}" id="city" autocomplete="address-level2" class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                                                </div>
+                                                {% for error in form.city.errors %}
+                                                    <div class="invalid-feedback d-block text-end"><span class="text-red-500 text-xs italic">{{ error }}</span></div>
+                                                {% endfor %}
+                                            </div>
+
+                                            <div class="sm:col-span-2">
+                                                <label for="{{ form.state.id_for_label }}" class="block text-sm font-medium text-gray-700"> {{form.state.label}}</label>
+                                                <div class="mt-1">
+                                                    <input type="text" name="{{ form.state.html_name }}" id="region" autocomplete="address-level1" class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                                                </div>
+                                                {% for error in form.state.errors %}
+                                                    <div class="invalid-feedback d-block text-end"><span class="text-red-500 text-xs italic">{{ error }}</span></div>
+                                                {% endfor %}
+                                            </div>
+
+                                            <div class="sm:col-span-2">
+                                                <label for="{{form.zipcode.id_for_label}}" class="block text-sm font-medium text-gray-700"> {{form.zipcode.label}} </label>
+                                                <div class="mt-1">
+                                                    <input type="number" name="{{ form.zipcode.html_name }}" id="postal-code" autocomplete="postal-code" class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                                                </div>
+                                                {% for error in form.zipcode.errors %}
+                                                    <div class="invalid-feedback d-block text-end"><span class="text-red-500 text-xs italic">{{ error }}</span></div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="pt-8">
+                                        <div>
+                                            <h3 class="text-lg leading-6 font-medium text-gray-900">Notifications</h3>
+                                            <p class="mt-1 text-sm text-gray-500">We'll always let you know about important changes, but you pick what else you want to hear about.</p>
+                                        </div>
+                                        <div class="mt-6">
+                                            <fieldset>
+                                                <legend class="text-base font-medium text-gray-900">By Email</legend>
                                                 <div class="mt-4 space-y-4">
-                                                    <div class="flex items-center">
-                                                        <input id="choice_tag" name="{{ choice.choice_html_name }}" type="radio" class="focus:ring-primary-500 h-4 w-4 text-primary-600 border-gray-300">
-                                                        <label for="{{ choice.choice_id_for_label }}" class="ml-3 block text-sm font-medium text-gray-700"> {{ choice.choice_label }} </label>
+                                                    <div class="relative flex items-start">
+                                                        <div class="flex items-center h-5">
+                                                            <input id="comments" name="{{ form.by_email_comments.html_name }}" type="checkbox" class="focus:ring-primary-500 h-4 w-4 text-primary-600 border-gray-300 rounded">
+                                                        </div>
+                                                        <div class="ml-3 text-sm">
+                                                            <label for="{{ form.by_email_comments.id_for_label }}" class="font-medium text-gray-700">{{ form.by_email_comments.label }}</label>
+                                                            <p class="text-gray-500">Get notified when someones posts a comment on a posting.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="relative flex items-start">
+                                                        <div class="flex items-center h-5">
+                                                            <input id="candidates" name="{{ form.by_email_candidates.html_name }}" type="checkbox" class="focus:ring-primary-500 h-4 w-4 text-primary-600 border-gray-300 rounded">
+                                                        </div>
+                                                        <div class="ml-3 text-sm">
+                                                            <label for="{{ form.by_email_candidates.id_for_label }}" class="font-medium text-gray-700">{{ form.by_email_candidates.label }}</label>
+                                                            <p class="text-gray-500">Get notified when a candidate applies for a job.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="relative flex items-start">
+                                                        <div class="flex items-center h-5">
+                                                            <input id="offers" name="{{ form.by_email_offers.html_name }}" type="checkbox" class="focus:ring-primary-500 h-4 w-4 text-primary-600 border-gray-300 rounded">
+                                                        </div>
+                                                        <div class="ml-3 text-sm">
+                                                            <label for="{{ form.by_email_offers.id_for_label }}" class="font-medium text-gray-700">{{ form.by_email_offers.label }}</label>
+                                                            <p class="text-gray-500">Get notified when a candidate accepts or rejects an offer.</p>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            {% endfor %}
-                                        </fieldset>
+                                            </fieldset>
+                                            <fieldset class="mt-6">
+                                                <div>
+                                                    <legend class="text-base font-medium text-gray-900">Push Notifications</legend>
+                                                    <p class="text-sm text-gray-500">These are delivered via SMS to your mobile phone.</p>
+                                                </div>
+                                                {% for choice in form.notifications %}
+                                                    <div class="mt-4 space-y-4">
+                                                        <div class="flex items-center">
+                                                            <input id="choice_tag" name="{{ choice.choice_html_name }}" type="radio" class="focus:ring-primary-500 h-4 w-4 text-primary-600 border-gray-300">
+                                                            <label for="{{ choice.choice_id_for_label }}" class="ml-3 block text-sm font-medium text-gray-700"> {{ choice.choice_label }} </label>
+                                                        </div>
+                                                    </div>
+                                                {% endfor %}
+                                            </fieldset>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="pt-5">
-                                <div class="flex justify-end">
-                                    <button type="button" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">Cancel</button>
-                                    <button type="submit" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">Save</button>
+                                <div class="pt-5">
+                                    <div class="flex justify-end">
+                                        <button type="button" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">Cancel</button>
+                                        <button type="submit" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">Save</button>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        {% block js %}
-            <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-            <script src="https://unpkg.com/create-file-list"></script>
-            <script>
-                function dataFileDnD() {
-                    return {
-                        files: [],
-                        fileDragging: null,
-                        fileDropping: null,
-                        humanFileSize(size) {
-                            const i = Math.floor(Math.log(size) / Math.log(1024));
-                            return (
-                                (size / Math.pow(1024, i)).toFixed(2) * 1 +
-                                " " +
-                                ["B", "kB", "MB", "GB", "TB"][i]
-                            );
-                        },
-                        remove(index) {
-                            let files = [...this.files];
-                            files.splice(index, 1);
+            {% block js %}
+                <script src="https://unpkg.com/create-file-list"></script>
+                <script>
+                    function dataFileDnD() {
+                        return {
+                            files: [],
+                            fileDragging: null,
+                            fileDropping: null,
+                            humanFileSize(size) {
+                                const i = Math.floor(Math.log(size) / Math.log(1024));
+                                return (
+                                    (size / Math.pow(1024, i)).toFixed(2) * 1 +
+                                    " " +
+                                    ["B", "kB", "MB", "GB", "TB"][i]
+                                );
+                            },
+                            remove(index) {
+                                let files = [...this.files];
+                                files.splice(index, 1);
 
-                            this.files = createFileList(files);
-                        },
-                        drop(e) {
-                            let removed, add;
-                            let files = [...this.files];
+                                this.files = createFileList(files);
+                            },
+                            drop(e) {
+                                let removed, add;
+                                let files = [...this.files];
 
-                            removed = files.splice(this.fileDragging, 1);
-                            files.splice(this.fileDropping, 0, ...removed);
+                                removed = files.splice(this.fileDragging, 1);
+                                files.splice(this.fileDropping, 0, ...removed);
 
-                            this.files = createFileList(files);
+                                this.files = createFileList(files);
 
-                            this.fileDropping = null;
-                            this.fileDragging = null;
-                        },
-                        dragenter(e) {
-                            let targetElem = e.target.closest("[draggable]");
+                                this.fileDropping = null;
+                                this.fileDragging = null;
+                            },
+                            dragenter(e) {
+                                let targetElem = e.target.closest("[draggable]");
 
-                            this.fileDropping = targetElem.getAttribute("data-index");
-                        },
-                        dragstart(e) {
-                            this.fileDragging = e.target
-                                .closest("[draggable]")
-                                .getAttribute("data-index");
-                            e.dataTransfer.effectAllowed = "move";
-                        },
-                        loadFile(file) {
-                            const preview = document.querySelectorAll(".preview");
-                            const blobUrl = URL.createObjectURL(file);
+                                this.fileDropping = targetElem.getAttribute("data-index");
+                            },
+                            dragstart(e) {
+                                this.fileDragging = e.target
+                                    .closest("[draggable]")
+                                    .getAttribute("data-index");
+                                e.dataTransfer.effectAllowed = "move";
+                            },
+                            loadFile(file) {
+                                const preview = document.querySelectorAll(".preview");
+                                const blobUrl = URL.createObjectURL(file);
 
-                            preview.forEach(elem => {
-                                elem.onload = () => {
-                                    URL.revokeObjectURL(elem.src); // free memory
-                                };
-                            });
+                                preview.forEach(elem => {
+                                    elem.onload = () => {
+                                        URL.revokeObjectURL(elem.src); // free memory
+                                    };
+                                });
 
-                            return blobUrl;
-                        },
-                        addFiles(e) {
-                            const files = createFileList([...this.files], [...e.target.files]);
-                            this.files = files;
-                            this.form.formData.files = [...files];
-                        }
-                    };
-                }
-            </script>
-        {% endblock%}{% endblock%}
+                                return blobUrl;
+                            },
+                            addFiles(e) {
+                                const files = createFileList([...this.files], [...e.target.files]);
+                                this.files = files;
+                                this.form.formData.files = [...files];
+                            }
+                        };
+                    }
+                </script>
+            {% endblock%}{% endblock%}
