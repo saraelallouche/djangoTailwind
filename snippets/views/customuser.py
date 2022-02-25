@@ -1,3 +1,4 @@
+from django.http.response import HttpResponse
 from django.urls.base import reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
@@ -16,11 +17,11 @@ class CustomUserAddView(CreateView):
     form_class = CustomUser
     success_url = reverse_lazy("user_list")
 
-    def form_invalid(self, form):
-        logger.info("form_invalid called")
-        form.instance.user = self.request.user
-        print(form.errors)
-        return super(CustomUserAddView, self).form_invalid(form)
+    # def form_invalid(self, form):
+    #     logger.info("form_invalid called")
+    #     form.instance.user = self.request.user
+    #     print(form.errors)
+    #     return super(CustomUserAddView, self).form_invalid(form)
 
 
 class CustomUserDetailView(DetailView):
@@ -37,6 +38,7 @@ class CustomUserUpdateView(UpdateView):
     model = CustomUserModel
     template_name = "user/edit_user.html"
     form_class = CustomUser
+    success_url = reverse_lazy("user_list")
 
 
 def get_success_url(self):

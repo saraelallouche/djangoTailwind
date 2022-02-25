@@ -1,22 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div>
-        {% for object in customuser %}
+    <div class="">
         <h1>Custom User Details</h1>
-        <ul>
-            <li>
-                <p> User Name: {{ object.username }}</p>
-                <p> First Name:{{ object.firstname }}</p>
-                <p>Last name:  {{ object.lastname }}</p>
-                <p> email address:{{ object.email }}</p>
-                <p> Address:{{ object.address }}</p>
-                <p> City:{{ object.city }}</p>
-                <p> Postal code :{{ object.zipcode }}</p>
-                <p>State: {{ object.state }}</p>
-                <p>County: {{ object.country }}</p>
-            </li>
-        </ul>
+        {% for object in CustomUserModel %}
+            <ul>
+                <li>
+                    <p> User Name: {{ object.username }}</p>
+                    <p> First Name:{{ object.firstname }}</p>
+                    <p>Last name:  {{ object.lastname }}</p>
+                    <p> email address:{{ object.email }}</p>
+                    <p> Address:{{ object.address }}</p>
+                    <p> City:{{ object.city }}</p>
+                    <p> Postal code :{{ object.zipcode }}</p>
+                    <p>State: {{ object.state }}</p>
+                    <p>County: {{ object.country }}</p>
+                </li>
+            </ul>
 
-    </div>
-{% endblock content %}
+            </div>
+        {% endfor %}
+{% endblock %}

@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import FileExtensionValidator
+from django.urls.base import reverse
 
 
 class CustomUserModel(models.Model):
@@ -57,5 +58,5 @@ class CustomUserModel(models.Model):
     def __str__(self):
         return self.username
 
-    # def get_absolute_url(self):
-    #     return reverse("user_detail")
+    def get_absolute_url(self):
+        return reverse("user_detail")

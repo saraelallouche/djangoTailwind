@@ -1,13 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <!--TO CHECK-->
-
-    {% comment %} <form>
-        {% csrf_token %}
-    {{ form.as_p }}
-    </Form>  {% endcomment %}
-
     <div class="" >
         <div class="bg-white">
             <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
@@ -59,48 +52,9 @@
                                         </div>
                                     </div>
 
-                                    {% comment %} <!--image drag-drop-->
 
-                                    <div class="sm:col-span-6">
-                                        <div x-data="{ files: null }" id="FileUpload" class="block w-full py-2 px-3 relative bg-white appearance-none border-2 border-gray-300 border-dashed rounded-md hover:shadow-outline-gray">
-                                            <input type="file" multiple
-                                                class="absolute inset-0 z-50 m-0 p-0 w-full h-full outline-none opacity-0"
-                                                x-on:change="files = $event.target.files; console.log($event.target.files);"
-                                                x-on:dragover="$el.classList.add('active')" x-on:dragleave="$el.classList.remove('active')" x-on:drop="$el.classList.remove('active')"
-                                            >
-                                            <template x-if="files !== null">
-                                                <div class="flex flex-col space-y-1">
-                                                    <template x-for="(_,index) in Array.from({ length: files.length })">
-                                                        <div class="flex flex-row items-center space-x-2">
-                                                            <template x-if="files[index].type.includes('audio/')"><i class="far fa-file-audio fa-fw"></i></template>
-                                                            <template x-if="files[index].type.includes('application/')"><i class="far fa-file-alt fa-fw"></i></template>
-                                                            <template x-if="files[index].type.includes('image/')"><i class="far fa-file-image fa-fw"></i></template>
-                                                            <template x-if="files[index].type.includes('video/')"><i class="far fa-file-video fa-fw"></i></template>
-                                                            <span class="font-medium text-gray-900" x-text="files[index].name">Uploading</span>
-                                                            <span class="text-xs self-end text-gray-500" x-text="filesize(files[index].size)">...</span>
-                                                        </div>
-                                                    </template>
-                                                </div>
-                                            </template>
-                                            <template x-if="files === null">
-                                                <div class="flex flex-col space-y-2 items-center justify-center p-2">
-                                                    <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
-                                                        <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                                    </svg>
-                                                    <input id="{{ form.image.id_for_label }}" name="{{ form.image.html_name }}" type="file" class="sr-only">
-                                                    <a href="javascript:void(0)" class="relative bg-white rounded-md font-medium text-primary-600 hover:text-gray-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary-500">
-                                                        Upload a file
-                                                    </a>
-                                                    <p class="pl-1">or drag and drop
-                                                    <span class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</span></p>
-                                                </div>
-                                            </template>
-                                        </div>
-                                    </div> {% endcomment %}
 
-                                    <!--image drag-drop-finishline-->
-
-                                    <!--CURRENT DRAG & DROP THAT WORKS-->
+                                    <!--CURRENT Image DRAG & DROP THAT WORKS-->
                                     <div class="bg-white rounded sm:col-span-6">
                                         <div x-data="dataFileDnD()" class="relative flex flex-col p-4 text-gray-400 border border-gray-200 rounded">
                                             <div x-ref="dnd"
@@ -136,53 +90,31 @@
                                                                 </svg>
                                                             </button>
 
-                                                            <template x-if="files[index].type.includes('audio/')">
-                                                                <svg class="absolute w-12 h-12 text-gray-400 transform top-1/2 -translate-y-2/3"
-                                                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                                        d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
-                                                                </svg>
-                                                            </template>
-
-                                                            <template x-if="files[index].type.includes('application/') || files[index].type === ''">
-                                                                <svg class="absolute w-12 h-12 text-gray-400 transform top-1/2 -translate-y-2/3"
-                                                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                                        d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                                                                </svg>
-                                                            </template>
-
                                                             <template x-if="files[index].type.includes('image/')">
                                                                 <img class="absolute inset-0 z-0 object-cover w-full h-full border-4 border-white preview"
                                                                     x-bind:src="loadFile(files[index])" />
                                                             </template>
 
-                                                            <template x-if="files[index].type.includes('video/')">
-                                                                <video
-                                                                    class="absolute inset-0 object-cover w-full h-full border-4 border-white pointer-events-none preview">
-                                                                    <fileDragging x-bind:src="loadFile(files[index])" type="video/mp4">
-                                                                    </video>
-                                                                </template>
-
-                                                                <div class="absolute bottom-0 left-0 right-0 flex flex-col p-2 text-xs bg-white bg-opacity-50">
-                                                                    <span class="w-full font-bold text-gray-900 truncate"
-                                                                        x-text="files[index].name">Loading</span>
-                                                                    <span class="text-xs text-gray-900" x-text="humanFileSize(files[index].size)">...</span>
-                                                                </div>
-
-                                                                <div class="absolute inset-0 z-40 transition-colors duration-300" @dragenter="dragenter($event)"
-                                                                    @dragleave="fileDropping = null"
-                                                                    :class="{'bg-blue-200 bg-opacity-80': fileDropping == index && fileDragging != index}">
-                                                                </div>
+                                                            <div class="absolute bottom-0 left-0 right-0 flex flex-col p-2 text-xs bg-white bg-opacity-50">
+                                                                <span class="w-full font-bold text-gray-900 truncate"
+                                                                    x-text="files[index].name">Loading</span>
+                                                                <span class="text-xs text-gray-900" x-text="humanFileSize(files[index].size)">...</span>
                                                             </div>
-                                                        </template>
-                                                    </div>
-                                                </template>
+
+                                                            <div class="absolute inset-0 z-40 transition-colors duration-300" @dragenter="dragenter($event)"
+                                                                @dragleave="fileDropping = null"
+                                                                :class="{'bg-blue-200 bg-opacity-80': fileDropping == index && fileDragging != index}">
+                                                            </div>
+                                                        </div>
+                                                    </template>
+                                                </div>
+                                            </template>
                                             </div>
-                                            </div>
+                                        </div>
 
 
-                                            {% comment %} <div class="sm:col-span-6">
+                                        {% comment %} <!--OLD IMAGE UPLOAD-->
+                                        <div class="sm:col-span-6">
                                         <label for="cover-photo" class="block text-sm font-medium text-gray-700"> Cover photo </label>
                                         <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                                             <div class="space-y-1 text-center">
@@ -203,52 +135,61 @@
                                         </div>
                                     </div> {% endcomment %}
 
-                                        </div>
                                     </div>
+                                </div>
 
-                                    <div class="pt-8">
-                                        <div>
-                                            <h3 class="text-lg leading-6 font-medium text-gray-900">Personal Information</h3>
-                                            <p class="mt-1 text-sm text-gray-500">Use a permanent address where you can receive mail.</p>
+                                <div class="pt-8">
+                                    <div>
+                                        <h3 class="text-lg leading-6 font-medium text-gray-900">Personal Information</h3>
+                                        <p class="mt-1 text-sm text-gray-500">Use a permanent address where you can receive mail.</p>
+                                    </div>
+                                    <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                                        <div class="sm:col-span-3">
+                                            <label for="{{ form.firstname.id_for_label }}" class="block text-sm font-medium text-gray-700">{{form.firstname.label}}</label>
+                                            <div class="mt-1">
+                                                <input type="text" name="{{ form.firstname.html_name }}" id="first-name" autocomplete="given-name" class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                                            </div>
+                                            {% for error in form.firstname.errors %}
+                                                <div class="invalid-feedback d-block text-end"><span class="text-red-500 text-xs italic">{{ error }}</span></div>
+                                            {% endfor %}
                                         </div>
-                                        <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-                                            <div class="sm:col-span-3">
-                                                <label for="{{ form.firstname.id_for_label }}" class="block text-sm font-medium text-gray-700">{{form.firstname.label}}</label>
-                                                <div class="mt-1">
-                                                    <input type="text" name="{{ form.firstname.html_name }}" id="first-name" autocomplete="given-name" class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 rounded-md">
-                                                </div>
-                                                {% for error in form.firstname.errors %}
-                                                    <div class="invalid-feedback d-block text-end"><span class="text-red-500 text-xs italic">{{ error }}</span></div>
-                                                {% endfor %}
-                                            </div>
 
-                                            <div class="sm:col-span-3">
-                                                <label for="{{ form.lastname.id_for_label }}" class="block text-sm font-medium text-gray-700">{{ form.lastname.label }} </label>
-                                                <div class="mt-1">
-                                                    <input type="text" name="{{ form.lastname.html_name }}" id="last-name" autocomplete="family-name" class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 rounded-md">
-                                                </div>
-                                                {% for error in form.lastname.errors %}
-                                                    <div class="invalid-feedback d-block text-end"><span class="text-red-500 text-xs italic">{{ error }}</span></div>
-                                                {% endfor %}
+                                        <div class="sm:col-span-3">
+                                            <label for="{{ form.lastname.id_for_label }}" class="block text-sm font-medium text-gray-700">{{ form.lastname.label }} </label>
+                                            <div class="mt-1">
+                                                <input type="text" name="{{ form.lastname.html_name }}" id="last-name" autocomplete="family-name" class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 rounded-md">
                                             </div>
+                                            {% for error in form.lastname.errors %}
+                                                <div class="invalid-feedback d-block text-end"><span class="text-red-500 text-xs italic">{{ error }}</span></div>
+                                            {% endfor %}
+                                        </div>
 
-                                            <div class="sm:col-span-4">
-                                                <label for="{{ form.email.id_for_label }}" class="block text-sm font-medium text-gray-700">{{form.email.label}}</label>
-                                                <div class="mt-1">
-                                                    <input id="email" name="{{ form.email.html_name }}" type="email" autocomplete="email" class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 rounded-md">
-                                                </div>
-                                                {% for error in form.email.errors %}
-                                                    <div class="invalid-feedback d-block text-end"><span class="text-red-500 text-xs italic">{{ error }}</span></div>
-                                                {% endfor %}
+                                        <div class="sm:col-span-4">
+                                            <label for="{{ form.email.id_for_label }}" class="block text-sm font-medium text-gray-700">{{form.email.label}}</label>
+                                            <div class="mt-1">
+                                                <input id="email" name="{{ form.email.html_name }}" type="email" autocomplete="email" class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 rounded-md">
                                             </div>
+                                            {% for error in form.email.errors %}
+                                                <div class="invalid-feedback d-block text-end"><span class="text-red-500 text-xs italic">{{ error }}</span></div>
+                                            {% endfor %}
+                                        </div>
 
-                                            <div class="sm:col-span-3">
-                                                <label for="{{ form.country.id_for_label }}" class="block text-sm font-medium text-gray-700">{{form.country.label}}</label>
-                                                <div class="mt-1">
-                                                    <select id="country" name="country" autocomplete="country-name" value="{{ form.country.value }}"
-                                                        class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                                        <!-- DROPDOWN -->
+                                        <div class="sm:col-span-3">
+                                            <label for="{{ form.country.id_for_label }}" class="block text-sm font-medium text-gray-700">{{form.country.label}}</label>
+                                            <div class="mt-1">
+                                                <select id="country" name="country" autocomplete="country-name" value="{{ form.country.value }}"
+                                                    class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                                                    <div class="p-2">
                                                         {% for widget in form.country.subwidgets %}
-                                                            {{ widget }}
+                                                            <span class="p-2">{{ widget }}</span>
+                                                            <span class="absolute inset-y-0 right-0 flex items-center pr-4">
+                                                                <!-- Heroicon name: solid/check -->
+                                                                <svg class="h-5 w-5 text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                                                </svg>
+                                                            </span>
+                                                            </div>
                                                         {% endfor %}
                                                     </select>
                                                 </div>
@@ -256,6 +197,42 @@
                                                     <div class="invalid-feedback d-block text-end"><span class="text-red-500 text-xs italic">{{ error }}</span></div>
                                                 {% endfor %}
                                             </div>
+
+                                            {% comment %} <!--DROPDOWN combobox1-->
+                                            <div x-data="{showMenu : false}" class="sm:col-span-3">
+                                                <label for="{{ form.country.id_for_label }}" class="block text-sm font-medium text-gray-700">{{form.country.label}}</label>
+                                                <div class="relative mt-1">
+                                                    <input @click="showMenu = !showMenu" id="combobox" type="text" value="{{ form.country.value }}"
+                                                    class="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-12 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm" role="combobox" aria-controls="options" aria-expanded="false">
+                                                    <button @click="showMenu = !showMenu" type="button" class="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
+                                                    <!-- Heroicon name: solid/selector -->
+                                                        <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                        <path fill-rule="evenodd" d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                                        </svg>
+                                                    </button>
+                                                    <ul x-show="showMenu" class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm" id="options" role="listbox">
+                                                        {% for widget in form.country.subwidgets %}
+                                                        <!--Combobox option, manage highlight styles based on mouseenter/mouseleave and keyboard navigation.
+                                                        Active: "text-white bg-indigo-600", Not Active: "text-gray-900"-->
+                                                        <li @click="showMenu = !showMenu" class="relative cursor-default select-none py-2 pl-3 pr-9 text-gray-900 hover:bg-gray-300" id="{{ widget.0 }}" role="option" tabindex="0">
+                                                            <!-- Selected: "font-semibold" -->
+                                                            <span class="block truncate ">{{ widget }}</span>
+                                                            <!--Checkmark, only display for selected option.
+                                                                Active: "text-white", Not Active: "text-indigo-600"-->
+                                                            <span class="absolute inset-y-0 right-0 flex items-center pr-4">
+                                                                <!-- Heroicon name: solid/check -->
+                                                                <svg class="h-5 w-5 text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                                                </svg>
+                                                            </span>
+                                                        </li>
+
+                                                        {% endfor %}
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                            <!--fin de COMBOBOX 1-->               {% endcomment %}
 
                                             <div class="sm:col-span-6">
                                                 <label for="{{ form.address.id_for_label }}" class="block text-sm font-medium text-gray-700">{{form.address.label}} </label>
@@ -298,7 +275,7 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                    <!--Notifications SECTION-->
                                     <div class="pt-8">
                                         <div>
                                             <h3 class="text-lg leading-6 font-medium text-gray-900">Notifications</h3>

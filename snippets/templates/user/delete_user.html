@@ -4,7 +4,7 @@
     <div class="container">
         <div class="flex justify-center">
             <div class="m-4 p-6 shadow-xl rounded-md">
-                <form action="{% url 'user_delete' customuser.pk %}" method="post" class="">
+                <form action="" method="post" class="">
                     <h1 class="text-center p-2">Delete user</h1>
                     {% csrf_token %}
                     <p class="p-2">Are you sure you want to delete "{{ customuser.username }}"?</p>
