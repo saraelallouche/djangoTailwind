@@ -36,8 +36,7 @@ class CustomUserListView(ListView):
 class CustomUserUpdateView(UpdateView):
     model = CustomUserModel
     template_name = "user/edit_user.html"
-    context_object_name = "user_edit"
-    fields = "__all__"
+    form_class = CustomUser
 
 
 def get_success_url(self):
