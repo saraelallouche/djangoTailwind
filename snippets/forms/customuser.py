@@ -1,36 +1,58 @@
 from django import forms
+from ..models import CustomUserModel
 
 
-class CustomUser(forms.Form):
+class CustomUser(forms.ModelForm):
 
-    created = forms.DateTimeField(auto_now_add=True, editable=False)
-    last_updated = forms.DateTimeField(auto_now=True, editable=False)
-    username = forms.CharField(max_length=30)
-    about = forms.CharField(max_length=150)
-    image = forms.ImageField(upload_to="media", null=True, blank=True)
-    firstname = forms.CharField(max_length=30)
-    lastname = forms.CharField(max_length=30)
-    email = forms.CharField(max_length=50)
-    countries = (
-        ("0", "United states"),
-        ("1", "Canada"),
-        ("2", "France"),
+    username = forms.CharField()
+    about = forms.CharField()
+    image = forms.ImageField(required=False)
+    firstname = forms.CharField()
+    lastname = forms.CharField()
+    email = forms.CharField()
+    countries = [
+        ("USA", "United states"),
+        ("CA", "Canada"),
+        ("FR", "France"),
+    ]
+
+    country = forms.ChoiceField(choices=countries)
+    address = forms.CharField()
+    city = forms.CharField()
+    state = forms.CharField()
+    zipcode = forms.IntegerField()
+
+    email_options = [
+        ("0", "Comments"),
+        ("1", "Candidates"),
+        ("2", "Offers"),
+    ]
+    by_email = forms.MultipleChoiceField(
+        required=False, widget=forms.RadioSelect(choices=email_options)
     )
-    country = forms.ChoiceField(max_length=10, choices=countries)
-    address = forms.CharField(max_length=50)
-    city = forms.CharField(max_length=60)
-    state = forms.CharField(max_length=30, verbose_name="State/Province")
-    zipcode = forms.IntegerField(verbose_name="Zip/Postal code")
 
-    by_email_comments = forms.BooleanField("Comments", default=False)
-    by_email_candidates = forms.BooleanField("Candidates", default=False)
-    by_email_offers = forms.BooleanField("Offers", default=False)
-
-    options = (
+    options = [
         ("0", "Everything"),
         ("1", "Same as email"),
         ("2", "No push notifications"),
-    )
+    ]
     notifications = forms.ChoiceField(
-        max_length=1, widget=forms.RadioSelect(choices=options), default=""
+        required=False, widget=forms.RadioSelect, choices=options
     )
+
+    class Meta:
+        model = CustomUserModel
+        fields = [
+            "username",
+            "about",
+            "image",
+            "firstname",
+            "lastname",
+            "email",
+            "country",
+            "address",
+            "city",
+            "state",
+            "zipcode",
+            "notifications",
+        ]

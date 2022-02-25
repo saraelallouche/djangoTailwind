@@ -4,12 +4,12 @@ from import_export.admin import ImportExportModelAdmin
 from import_export import resources
 from import_export.tmp_storages import CacheStorage
 
-from ..models import CustomUser
+from ..models import CustomUserModel
 
 
 class CustomUserResource(resources.ModelResource):
     class Meta:
-        model = CustomUser
+        model = CustomUserModel
 
 
 class CustomUserAdmin(ImportExportModelAdmin, admin.ModelAdmin):
@@ -21,9 +21,8 @@ class CustomUserAdmin(ImportExportModelAdmin, admin.ModelAdmin):
         "username",
         "lastname",
         "country",
-        "by_email_comments",
-        "by_email_candidates",
-        "by_email_offers",
+        "created",
+        "notifications",
     )
     search_fields = (
         "pk",
@@ -36,4 +35,4 @@ class CustomUserAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     save_as = True
 
 
-admin.site.register(CustomUser, CustomUserAdmin)
+admin.site.register(CustomUserModel, CustomUserAdmin)

@@ -6,7 +6,7 @@
     {% comment %} <form>
         {% csrf_token %}
     {{ form.as_p }}
-    </Form> {% endcomment %}
+    </Form>  {% endcomment %}
 
     <div class="" >
         <div class="bg-white">
@@ -114,7 +114,7 @@
                                                     title="" />
 
                                                 <div class="flex flex-col items-center justify-center py-10 text-center">
-                                                    <svg class="mx-auto h-12 w-12 text-gray-400" stroke="#90EE90" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                                                    <svg class="mx-auto h-12 w-12 text-gray-400" stroke="#d2f8d2" fill="none" viewBox="0 0 48 48" aria-hidden="true">
                                                         <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                                     </svg>
                                                     <p class="m-0">Drag your files here or click in this area.</p>
@@ -345,7 +345,7 @@
                                                 {% for choice in form.notifications %}
                                                     <div class="mt-4 space-y-4">
                                                         <div class="flex items-center">
-                                                            <input id="choice_tag" name="{{ choice.choice_html_name }}" type="radio" class="focus:ring-primary-500 h-4 w-4 text-primary-600 border-gray-300">
+                                                            <input id="{{ choice.choice_id_for_label }}" name="choice_tag" type="radio" class="focus:ring-primary-500 h-4 w-4 text-primary-600 border-gray-300">
                                                             <label for="{{ choice.choice_id_for_label }}" class="ml-3 block text-sm font-medium text-gray-700"> {{ choice.choice_label }} </label>
                                                         </div>
                                                     </div>

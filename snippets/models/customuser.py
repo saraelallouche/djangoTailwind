@@ -1,10 +1,8 @@
-from typing_extensions import Required
 from django.db import models
-from django.urls import reverse
 from django.core.validators import FileExtensionValidator
 
 
-class CustomUser(models.Model):
+class CustomUserModel(models.Model):
 
     created = models.DateTimeField(auto_now_add=True, editable=False)
     last_updated = models.DateTimeField(auto_now=True, editable=False)
@@ -20,9 +18,9 @@ class CustomUser(models.Model):
     lastname = models.CharField(max_length=30)
     email = models.CharField(max_length=50)
     countries = (
-        ("0", "United states"),
-        ("1", "Canada"),
-        ("2", "France"),
+        ("USA", "United states"),
+        ("CA", "Canada"),
+        ("FR", "France"),
     )
     country = models.CharField(max_length=10, choices=countries)
     address = models.CharField(max_length=50)
@@ -30,10 +28,20 @@ class CustomUser(models.Model):
     state = models.CharField(max_length=30, verbose_name="State/Province")
     zipcode = models.PositiveIntegerField(verbose_name="Zip/Postal code")
 
-    by_email_comments = models.BooleanField("Comments", default=False)
-    by_email_candidates = models.BooleanField("Candidates", default=False)
-    by_email_offers = models.BooleanField("Offers", default=False)
-
+    # by_email_comments = models.BooleanField("Comments", default=False)
+    # by_email_candidates = models.BooleanField("Candidates", default=False)
+    # by_email_offers = models.BooleanField("Offers", default=False)
+    email_options = (
+        ("0", "Comments"),
+        ("1", "Candidates"),
+        ("2", "Offers"),
+    )
+    by_email = models.CharField(
+        max_length=1,
+        choices=email_options,
+        null=True,
+        blank=True,
+    )
     options = (
         ("0", "Everything"),
         ("1", "Same as email"),
@@ -44,11 +52,10 @@ class CustomUser(models.Model):
         choices=options,
         null=True,
         blank=True,
-        default="",
     )
 
     def __str__(self):
         return self.username
 
-    def get_absolute_url(self):
-        return reverse("user_detail", args=[str(self.pk)])
+    # def get_absolute_url(self):
+    #     return reverse("user_detail")
