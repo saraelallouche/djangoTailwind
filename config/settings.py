@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os
 import environ
-from decouple import config
 
 env = environ.Env(
     # set casting, default value
@@ -51,7 +50,8 @@ DJANGO_APPS = [
 ]
 
 LOCAL_APPS = [
-    "snippets",
+    "snippets",  # tailwindUI snippets
+    "crud",  # crud example model
 ]
 
 EXTERNAL_APPS = [
@@ -66,13 +66,11 @@ INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + EXTERNAL_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    # Heroku deployment
-    "whitenoise.middleware.WhiteNoiseMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",  # Heroku deployment
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
-    # For django-tailwind
-    "django_browser_reload.middleware.BrowserReloadMiddleware",
+    "django_browser_reload.middleware.BrowserReloadMiddleware",  # For django-tailwind
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
