@@ -20,9 +20,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    # ADMIN - CHANGE OF BY DEFAULT URL FOR SECURITY REASONS
     path("adminjlk/", admin.site.urls),
+    # DJANGO-TAILWIND THIRD APP
+    path("__reload__/", include("django_browser_reload.urls")),
+    # SNIPPETS LOCAL APP
     path("", include("snippets.urls")),
-    path("__reload__/", include("django_browser_reload.urls")),  # for tailwind
+    # CRUD
+    path("crud", include("crud.urls")),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
