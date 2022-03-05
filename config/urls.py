@@ -27,7 +27,7 @@ urlpatterns = [
     # SNIPPETS LOCAL APP
     path("", include("snippets.urls")),
     # CRUD
-    path("crud", include("crud.urls")),
+    path("crud/", include("crud.urls")),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
