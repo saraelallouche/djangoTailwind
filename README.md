@@ -102,6 +102,17 @@ Any contributions you make are **greatly appreciated**, but to facilitate the re
 
 ### Apps structure (TBD)
 
+### Creating model checklist
+
+1. Create the model with standard fields
+2. Activate it in the admin
+3. Create basic list view and detail view
+4. Perform tests
+   1. model based
+   2. url based
+   3. front-end (selenium)
+5. Comment all code
+
 ### Creating superuser and sqlite test database
 
 
