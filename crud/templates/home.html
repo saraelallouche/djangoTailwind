@@ -1,17 +1,17 @@
 <!-- templates/home.html -->
-{% extends "base.html" %}
+{% extends "base_crud.html" %}
 
 {% block content %}
 
     <!-- This example requires Tailwind CSS v2.0+ -->
     <div class="container mx-auto">
-        <div class="flex flex-col justify-center">
+        <div class="p-4 flex flex-col justify-center">
             <h2 class='text-center font-semibold text-xl py-6' >Blog List </h2>
             <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <form class="form-inline ml-8 mt-2 mt-md-0" action="{% url 'search_results' %}" method="get">
                     {% csrf_token %}
-                    <input name="q" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                    <button type="submit">Search</button>
+                    <input name="q" class="form-control mr-sm-2 rounded" type="text" placeholder="Search" aria-label="Search">
+                    <button type="submit" class="border-2 border-gray-200 hover:border-gray-300 shadow-md py-1 px-4 rounded">Search</button>
                 </form>
 
                 <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">

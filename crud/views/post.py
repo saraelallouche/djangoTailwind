@@ -21,5 +21,5 @@ class SearchResultsListView(ListView):  # new
 
     def get_queryset(self):  # new
         return Post.objects.filter(
-            Q(author__icontains="author") | Q(title__icontains="title")
+            Q(title__icontains="author") | Q(title__icontains="title")
         )
