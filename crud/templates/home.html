@@ -7,9 +7,10 @@
     <div class="container mx-auto">
         <div class="p-4 flex flex-col justify-center">
             <h2 class='text-center font-semibold text-xl py-6' >Blog List </h2>
+
             <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                <form class="form-inline ml-8 mt-2 mt-md-0" action="{% url 'search_results' %}" method="get">
-                    {% csrf_token %}
+                <form class="form-inline ml-8 mt-2 mt-md-0" action="{% url 'home' %}" method="get">
+
                     <input name="q" class="form-control mr-sm-2 rounded" type="text" placeholder="Search" aria-label="Search">
                     <button type="submit" class="border-2 border-gray-200 hover:border-gray-300 shadow-md py-1 px-4 rounded">Search</button>
                 </form>
@@ -20,9 +21,9 @@
                         <table id="dataTable" class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-100">
                                 <tr>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Created Date</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Updated Date</th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Body</th>
                                     <th scope="col" class="relative px-6 py-3">
                                         <span class="sr-only">Edit</span>
@@ -30,6 +31,7 @@
                                 </tr>
                             </thead>
                             {% include 'search_results.html' %}
+
                         </table>
                     </div>
                 </div>
