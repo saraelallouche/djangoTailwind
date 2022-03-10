@@ -8,13 +8,14 @@
                 </div>
             </td>
             <td class="px-6 py-2 whitespace-nowrap">
-                <div class="text-sm text-gray-900">{{ post.created }}</div>
+                <div class="text-sm text-gray-900">{{ post.author }}</div>
             </td>
             <td class="px-6 py-2 whitespace-nowrap">
                 <div class="text-sm text-gray-500">{{ post.last_updated }}</div> </td>
             <td class="px-6 py-2 whitespace-nowrap text-sm text-gray-500">{{ post.body }}</td>
             <td class="px-6 py-2 whitespace-nowrap text-right text-sm font-medium">
-                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                <a href="{% url 'post_edit' post.pk %}" class="text-indigo-600 hover:text-indigo-900 pr-2">Edit</a>
+                <a href="{% url 'post_delete' post.pk %}" class="text-indigo-600 hover:text-indigo-900">Delete</a>
             </td>
         </tr>
     {% endfor %}

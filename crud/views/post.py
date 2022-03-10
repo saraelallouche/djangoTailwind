@@ -1,4 +1,7 @@
-from django.views.generic import ListView, DetailView
+from django.urls.base import reverse, reverse_lazy
+from django.views.generic import ListView, DetailView, UpdateView, DeleteView
+
+from ..forms import PostForm
 from ..models import Post
 from django.db.models import Q
 
@@ -11,26 +14,31 @@ class BlogListView(ListView):
     model = Post
     template_name = "home.html"
 
-    def get_queryset(self):
-        query = self.request.GET.get("q", "")
-        object_list = self.model.objects.all()
-        if query:
-            object_list = self.model.objects.filter(
-                Q(title__icontains=query)
-                | Q(body__icontains=query)
-                | Q(created__icontains=query)
-            )
-        else:
-            object_list = self.model.objects.all()
-        return object_list
-
 
 class BlogDetailView(DetailView):
     model = Post
     template_name = "post_detail.html"
 
 
-# class SearchResultsListView(ListView):  # new
-#     model = Post
-#     context_object_name = "post"
-#     template_name = "search_results.html"
+class SearchResultsListView(ListView):  # new
+    model = Post
+    context_object_name = "post_list"
+    template_name = "home.html"
+
+    def get_queryset(self):  # new
+        query = self.request.GET.get("q")
+        return Post.objects.filter(
+            Q(title__icontains=query) | Q(author__username__icontains=query)
+        )
+
+
+class BlogUpdateView(UpdateView):  # new
+    model = Post
+    template_name = "post_edit.html"
+    fields = ["title", "body"]
+
+
+class BlogDeleteView(DeleteView):
+    model = Post
+    template_name = "post_delete.html"
+    success_url = reverse_lazy("home")

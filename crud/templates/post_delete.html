@@ -1,0 +1,16 @@
+<!-- templates/post_delete.html -->
+{% extends "base_crud.html" %}
+
+{% block content %}
+    <div class= "container mx-auto">
+        <div class="flex justify-center ">
+            <div class="w-1/3 shadow-lg p-6 rounded-md mt-8">
+                <h1 class='font-semibold'>Delete post</h1>
+                <form action="" method="post">{% csrf_token %}
+                    <p>Are you sure you want to delete "{{ post.title }}"?</p>
+                    <input type="submit" value="Confirm" class="px-2 py-1 hover:text-primary-700 hover:cursor-pointer before:rounded-lg">
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

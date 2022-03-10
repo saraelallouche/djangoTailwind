@@ -24,7 +24,7 @@ class Post(models.Model):
         null=False,
         verbose_name="author",
     )
-    body = models.TextField(blank=False, null=False, verbose_name="author")
+    body = models.TextField(blank=False, null=False, verbose_name="Body")
 
     class Meta:
         ordering = ["last_updated", "title"]  # useful to determine by default ordering
