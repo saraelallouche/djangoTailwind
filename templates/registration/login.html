@@ -1,0 +1,67 @@
+{% extends "base_crud.html" %}
+
+
+{% block content %}
+    <div class="min-h-screen bg-secondary-100 flex flex-col justify-center py-4">
+        <div class="container px-5 py-8 mx-auto flex justify-center">
+            <form method="post" class="relative py-4 sm:max-w-xl sm:mx-auto font-robotoSlab">
+                <div class="absolute inset-0 bg-gradient-to-r from-primary-300 to-primary-600 shadow-lg transform -skew-y-4
+                    sm:skew-y-4 sm:-rotate-6 rounded-3xl ">
+                </div>
+
+                <div class="relative px-10 py-10 bg-white shadow-lg rounded-3xl sm:p-20" >
+                    <div class="max-w-md mx-auto">
+                        {% csrf_token %}
+                        <div>
+                            <div class="flex justify-center">
+                                <img src="" class="w-1/2 m-4" />
+                            </div>
+                            <h1 class="text-2xl text-center p-2">
+                                Tailwind ui
+                            </h1>
+                        </div>
+                        <div class="divide-y divide-secondary-200">
+                            <div class=" py-8 text-base leading-6 space-y-4 text-secondary-700 sm:text-lg sm:leading-7">
+                                {% if form.non_field_errors %}
+                                    <div class=" alert alert-danger text-xs text-red-400 pb-2 "  role="alert">
+                                        {{ form.non_field_errors|first }}
+                                    </div>
+                                {% endif %}
+                                <div class="relative">
+                                    <label for="inputUsername" class="text-secondary-800 text-sm ">Nom d'utilisateur</label>
+                                    <input autocomplete="off" id="inputUsername" name="username" type="text" value="{{ form.username.value|default:'' }}"
+                                        class="peer p-6 placeholder-transparent rounded h-4 text-sm w-full border-secondary-300
+                                            text-secondary-700 focus:outline-none focus:border-primary-600 {%if form.username.errors %}is-invalid{% endif %}"
+                                        placeholder="Nom d'utilisateur" />
+                                    {% if form.username.errors %}
+                                        <div class="invalid-feedback text-red-500 text-xs">
+                                            {{ form.username.errors|first }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="relative">
+                                    <label for="inputPassword" class="text-secondary-800 text-sm"> Mot de passe </label>
+                                    <input autocomplete="off"  id="inputPassword" name="password" type="password" class="peer p-6 placeholder-transparent
+                                        h-4 text-sm w-full rounded border-secondary-300 text-secondary-900 focus:outline-none focus:border-primary-600
+                                        {% if form.password.errors %}is-invalid{% endif %}" placeholder="Mot de passe" />
+                                    {% if form.password.errors %}
+                                        <div class="invalid-feedback text-red-500 text-xs">
+                                            {{ form.password.errors|first }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="flex justify-center ">
+                                    <button type="submit" id="login_button" class="mt-4 w-full bg-primary-500 text-white rounded-md px-2 py-1 hover:bg-primary-700">
+                                        Connexion
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    </div>
+
+{% endblock content %}

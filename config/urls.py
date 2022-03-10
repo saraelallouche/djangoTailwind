@@ -22,6 +22,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     # ADMIN - CHANGE OF BY DEFAULT URL FOR SECURITY REASONS
     path("adminjlk/", admin.site.urls),
+    # CUSTOM USER - AUTHENTICATION
+    path("accounts/", include("django.contrib.auth.urls")),
     # DJANGO-TAILWIND THIRD APP
     path("__reload__/", include("django_browser_reload.urls")),
     # SNIPPETS LOCAL APP
