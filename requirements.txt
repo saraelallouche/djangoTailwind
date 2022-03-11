@@ -26,3 +26,6 @@ gunicorn==19.6.0
 python-decouple==3
 whitenoise
 psycopg2
+
+# TEST
+selenium==4.1.2
