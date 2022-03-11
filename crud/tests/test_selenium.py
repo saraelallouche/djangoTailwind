@@ -14,8 +14,8 @@ class TestBlog(StaticLiveServerTestCase):
         self.browser.get("http://127.0.0.1:8000/crud")
 
         # Request page for the Post list
-        alert = self.browser.find_element(By.CLASS_NAME, "container")
-        self.assertEquals(alert.find_element(By.TAG_NAME, "h2").text, "Blog List")
+        alert = self.browser.find_element(By.ID, "crud")
+        self.assertEquals(alert.find_element(By.TAG_NAME, "h1").text, "Users")
 
     def test_click_on_author_name_directs_to_post_details(self):
         self.browser.get("http://127.0.0.1:8000/crud")

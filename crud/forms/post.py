@@ -9,7 +9,10 @@ class PostForm(forms.ModelForm):
         max_length=20,
         required=True,
     )
-    body = forms.CharField(widget=forms.Textarea())
+    body = forms.CharField(
+        widget=forms.Textarea,
+        required=True,
+    )
 
     class Meta:
         model = Post

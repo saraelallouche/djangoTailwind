@@ -28,14 +28,17 @@ class SearchResultsListView(ListView):  # new
     def get_queryset(self):  # new
         query = self.request.GET.get("q")
         return Post.objects.filter(
-            Q(title__icontains=query) | Q(author__username__icontains=query)
+            Q(title__icontains=query)
+            | Q(author__username__icontains=query)
+            | Q(body__icontains=query)
         )
 
 
 class BlogUpdateView(UpdateView):  # new
     model = Post
+    form_class = PostForm
     template_name = "post_edit.html"
-    fields = ["title", "body"]
+    # fields = ["title", "body"]
 
 
 class BlogDeleteView(DeleteView):
