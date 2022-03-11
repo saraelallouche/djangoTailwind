@@ -53,7 +53,6 @@ module.exports = {
               cyan: colors.cyan,
               primary: colors.blue,
               secondary: colors.gray,
-              indigo: colors.blue,
             },
             fontFamily: {
                 sans: ['Inter var', defaultTheme.fontFamily.sans],

@@ -29,3 +29,4 @@ psycopg2
 
 # TEST
 selenium==4.1.2
+webdriver-manager==3.5.2

@@ -5,10 +5,6 @@ from ..models import Post
 class PostForm(forms.ModelForm):
 
     title = forms.CharField(max_length=20, required=True)
-    author = forms.CharField(
-        max_length=20,
-        required=True,
-    )
     body = forms.CharField(
         widget=forms.Textarea,
         required=True,
@@ -18,6 +14,5 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = [
             "title",
-            "author",
             "body",
         ]

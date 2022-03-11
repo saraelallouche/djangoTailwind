@@ -1,5 +1,11 @@
 from django.urls.base import reverse, reverse_lazy
-from django.views.generic import ListView, DetailView, UpdateView, DeleteView
+from django.views.generic import (
+    ListView,
+    DetailView,
+    UpdateView,
+    DeleteView,
+    CreateView,
+)
 
 from ..forms import PostForm
 from ..models import Post
@@ -34,11 +40,25 @@ class SearchResultsListView(ListView):  # new
         )
 
 
+class BlogCreateView(CreateView):  # new
+    model = Post
+    form_class = PostForm
+    template_name = "post_create.html"
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super(BlogCreateView, self).form_valid(form)
+
+    def form_invalid(self, form):
+        form.instance.user = self.request.user
+        print(form.errors)
+        return super(BlogCreateView, self).form_invalid(form)
+
+
 class BlogUpdateView(UpdateView):  # new
     model = Post
     form_class = PostForm
     template_name = "post_edit.html"
-    # fields = ["title", "body"]
 
 
 class BlogDeleteView(DeleteView):

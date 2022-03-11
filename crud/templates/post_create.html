@@ -22,10 +22,9 @@
 
                                     <!--Title-->
                                     <div class="sm:col-span-4">
-
                                         <div class="mt-1 flex rounded-md shadow-sm">
                                             <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-secondary-300 bg-secondary-50 text-secondary-500 sm:text-sm"> Title</span>
-                                            <input type="text" name="{{ form.title.html_name }}" id="{{ form.title.id }}" value="{{ form.title.value }}"
+                                            <input type="text" name="{{ form.title.html_name }}" id="{{ form.title.id }}" value=""
                                                 class="flex-1 focus:ring-primary-500 focus:border-primary-500 block w-full min-w-0 rounded-none rounded-r-md sm:text-sm border-secondary-300">
                                         </div>
                                         {% for error in form.title.errors %}
@@ -38,7 +37,7 @@
                                         <div class="mt-1">
                                             <textarea type="text" id="{{ form.body.id_for_label }}" name="{{ form.body.name }}" rows="5" value="{{ form.body.value }}"
                                                 class="p-2 shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-md border border-secondary-300 rounded-md" >
-                                            </textarea>
+                                            </textarea>X
                                         </div>
                                         <p class="mt-2 text-sm text-secondary-500">Edit your post content.</p>
                                         {% for error in form.body.errors %}

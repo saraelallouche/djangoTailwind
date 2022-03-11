@@ -1,7 +1,7 @@
 
 <tbody class="bg-white divide-y divide-secondary-200">
     {% for post in post_list %}
-        <tr class="hover:bg-indigo-100">
+        <tr class="hover:bg-primary-100">
             <td class="px-6 py-2 whitespace-nowrap">
                 <div class="text-sm font-medium text-secondary-900">
                     <a href="{% url 'post_detail' post.pk %}">{{ post.author }}</a>
@@ -14,9 +14,9 @@
                 <div class="text-sm text-secondary-500">{{ post.created }}</div> </td>
             <td class="hidden px-6 py-2 whitespace-nowrap text-sm text-secondary-500 lg:table-cell">{{ post.body }}</td>
             <td class="px-6 py-2 whitespace-nowrap text-right text-sm font-medium">
-                <a href="{% url 'post_edit' post.pk %}" class="text-indigo-600 hover:text-indigo-900 pr-2">Edit</a>
-                <a href="{% url 'post_delete' post.pk %}" class="text-indigo-600 hover:text-indigo-900 pr-2 ">Delete</a>
-                <a href="{% url 'post_detail' post.pk %}" class="text-indigo-600 hover:text-indigo-900">View</a>
+                <a href="{% url 'post_edit' post.pk %}" class="text-primary-600 hover:text-primary-900 pr-2">Edit</a>
+                <a href="{% url 'post_delete' post.pk %}" class="text-primary-600 hover:text-primary-900 pr-2 ">Delete</a>
+                <a href="{% url 'post_detail' post.pk %}" class="text-primary-600 hover:text-primary-900">View</a>
             </td>
         </tr>
     {% endfor %}

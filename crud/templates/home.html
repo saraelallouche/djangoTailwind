@@ -8,8 +8,8 @@
         <div class="p-1 sm:p-2 sm:flex sm:flex-col sm:justify-center">
             <div class="flex justify-reverse flex-wrap sm:flex sm:items-center px-2 md:px-0 py-6 sm:py-4">
                 <div class="sm:flex-auto ml-2">
-                    <h1 class="text-xl font-semibold text-gray-900">Users</h1>
-                    <p class="mt-2 text-sm text-gray-700">A list of all the users in your account including their name, title, email and role.</p>
+                    <h1 class="text-xl font-semibold text-gray-900">Posts</h1>
+                    <p class="mt-2 text-sm text-gray-700">A list of all the posts including main characteristics.</p>
                 </div>
                 <div class="flex justify-end items-center mt-4">
                     <!--SEARCH BAR-->
@@ -26,7 +26,7 @@
                     </form>
                     <!--ADD POST-->
                     <div class="sm:mt-0 sm:ml-8 sm:flex-none ">
-                        <button type="button" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 px-4 ml-2 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Add Post</button>
+                        <a href="{% url 'post_create' %}"> <button type="button" class="inline-flex justify-center rounded-md border border-transparent bg-primary-600 px-4 ml-2 py-2 text-sm font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 sm:w-auto">Add Post</button></a>
                     </div>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                                     <th scope="col" class="relative px-6 py-3">
                                         <span class="sr-only ">Edit</span>
                                         <span class="sr-only">Delete</span>
-                                        <span class="sr-only">Veiw</span>
+                                        <span class="sr-only">View</span>
                                     </th>
                                 </tr>
                             </thead>

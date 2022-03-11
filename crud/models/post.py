@@ -10,7 +10,8 @@ class Post(models.Model):
         auto_now=True, editable=False
     )  # useful for audit of database
 
-    # blank, null and verbose are not mandatory, but it is helpful to define the values, if null=True including a default value could be useful
+    # blank, null and verbose are not mandatory, but it is helpful to define the values,
+    # if null=True including a default value could be useful
     title = models.CharField(
         max_length=200, blank=False, null=False, verbose_name="Title"
     )
