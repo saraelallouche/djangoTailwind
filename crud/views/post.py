@@ -17,6 +17,7 @@ from django.shortcuts import render
 
 # Create your views here.
 class BlogListView(ListView):
+    paginate_by = 15
     model = Post
     template_name = "home.html"
 
@@ -30,6 +31,12 @@ class SearchResultsListView(ListView):  # new
     model = Post
     context_object_name = "post_list"
     template_name = "home.html"
+    paginate_by = 15
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["query"] = self.request.GET.get("q")
+        return context
 
     def get_queryset(self):  # new
         query = self.request.GET.get("q")
@@ -42,9 +49,9 @@ class SearchResultsListView(ListView):  # new
 
 class BlogCreateView(CreateView):  # new
     model = Post
-    # form_class = PostForm
     template_name = "post_create.html"
     fields = "__all__"
+    success_url = reverse_lazy("home")
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -58,9 +65,9 @@ class BlogCreateView(CreateView):  # new
 
 class BlogUpdateView(UpdateView):  # new
     model = Post
-    # form_class = PostForm
     template_name = "post_edit.html"
     fields = "__all__"
+    success_url = reverse_lazy("home")
 
 
 class BlogDeleteView(DeleteView):

@@ -59,6 +59,7 @@ EXTERNAL_APPS = [
     "theme",
     "django_browser_reload",
     "import_export",
+    "debug_toolbar",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + EXTERNAL_APPS
@@ -67,6 +68,7 @@ INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + EXTERNAL_APPS
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",  # Heroku deployment
+    "debug_toolbar.middleware.DebugToolbarMiddleware",  # Django-toolbar
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -133,6 +135,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+INTERNAL_IPS = ["127.0.0.1"]
+
+DEBUG_TOOLBAR_CONFIG = {
+    "SHOW_TOOLBAR_CALLBACK": lambda r: False,  # disables it - TO DO IN PRODUCTION
+    # '...
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/

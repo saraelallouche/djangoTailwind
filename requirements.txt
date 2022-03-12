@@ -17,6 +17,9 @@ crispy-tailwind==0.5.0
 Pillow==8.4.0
 openpyxl~=3.0.7 # excel
 xlrd==1.2.0 # excel
+factory-boy==3.2.1
+django-debug-toolbar==3.2.4
+
 
 # HEROKU DEPLOYMENT
 django-environ==0.8.1
@@ -26,6 +29,7 @@ gunicorn==19.6.0
 python-decouple==3
 whitenoise
 psycopg2
+
 
 # TEST
 selenium==4.1.2
