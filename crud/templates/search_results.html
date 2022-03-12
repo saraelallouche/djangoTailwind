@@ -2,11 +2,11 @@
 <tbody class="bg-white divide-y divide-secondary-200">
     {% for post in post_list %}
         <tr class="hover:bg-primary-100">
-            <td class="px-6 py-2 whitespace-nowrap">
-                <div class="text-sm font-medium text-secondary-900">
-                    <a href="{% url 'post_detail' post.pk %}">{{ post.author }}</a>
-                </div>
-            </td>
+            {#            <td class="px-6 py-2 whitespace-nowrap">#}
+            {#                <div class="text-sm font-medium text-secondary-900">#}
+            {#                    <a href="{% url 'post_detail' post.pk %}">{{ post.author }}</a>#}
+            {#                </div>#}
+            {#            </td>#}
             <td class="px-6 py-2 whitespace-nowrap">
                 <div class="text-sm text-secondary-900">{{ post.title }}</div>
             </td>

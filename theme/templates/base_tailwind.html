@@ -1,0 +1,27 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% block title %}
+            <title>Project Name</title>
+        {% endblock %}
+
+        {% block meta_tags %}
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        {% endblock %}
+
+
+        {% tailwind_css %}
+        <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+        <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    </head>
+
+    <body class="antialiased font-sans bg-gray-200">
+        {% block content %}
+
+        {% endblock %}
+
+    </body>
+</html>

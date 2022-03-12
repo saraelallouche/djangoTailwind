@@ -21,7 +21,7 @@ class TestBlog(StaticLiveServerTestCase):
     def tearDown(self):
         self.browser.close()
 
-    #
+    # TODO: fix selenium tests
     # def test_no_projects_alert_is_displayed(self):
     #     self.browser.get("http://127.0.0.1:8000/crud")
     #

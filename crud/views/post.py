@@ -7,7 +7,7 @@ from django.views.generic import (
     CreateView,
 )
 
-from ..forms import PostForm
+# from ..forms import PostForm
 from ..models import Post
 from django.db.models import Q
 
@@ -35,15 +35,16 @@ class SearchResultsListView(ListView):  # new
         query = self.request.GET.get("q")
         return Post.objects.filter(
             Q(title__icontains=query)
-            | Q(author__username__icontains=query)
+            # | Q(author__username__icontains=query)
             | Q(body__icontains=query)
         )
 
 
 class BlogCreateView(CreateView):  # new
     model = Post
-    form_class = PostForm
+    # form_class = PostForm
     template_name = "post_create.html"
+    fields = "__all__"
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -57,8 +58,9 @@ class BlogCreateView(CreateView):  # new
 
 class BlogUpdateView(UpdateView):  # new
     model = Post
-    form_class = PostForm
+    # form_class = PostForm
     template_name = "post_edit.html"
+    fields = "__all__"
 
 
 class BlogDeleteView(DeleteView):

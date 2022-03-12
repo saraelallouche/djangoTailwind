@@ -17,14 +17,14 @@ class Post(models.Model):
     )
 
     # always think on delete mode and related_name (author.posts access)
-    author = models.ForeignKey(
-        "auth.User",
-        on_delete=models.CASCADE,
-        related_name="posts",
-        blank=False,
-        null=False,
-        verbose_name="author",
-    )
+    # author = models.ForeignKey(
+    #     "auth.User",
+    #     on_delete=models.CASCADE,
+    #     related_name="posts",
+    #     blank=False,
+    #     null=False,
+    #     verbose_name="author",
+    # )
     body = models.TextField(blank=False, null=False, verbose_name="Body")
 
     class Meta:

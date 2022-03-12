@@ -19,13 +19,13 @@ class PostAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = (
         "pk",
         "title",
-        "author",
+        # "author",
         "body",
     )
     search_fields = (
         "pk",
         "title",
-        "author",
+        # "author",
         "body",
     )
 

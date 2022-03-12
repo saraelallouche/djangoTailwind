@@ -5,8 +5,8 @@
     <!-- This example requires Tailwind CSS v2.0+ -->
     <div class= "container mx-auto ">
 
-        <div class="" style="">
-            <div class="bg-white">
+        <div class="w-full p-4">
+            <div class="bg-white shadow overflow-hidden sm:rounded-lg">
                 <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
                     <div class="max-w-3xl mx-auto">
 
@@ -14,8 +14,8 @@
                             {% csrf_token %}
                             <div class="space-y-8">
                                 <div>
-                                    <h3 class="text-lg leading-6 font-medium text-secondary-900">Blog post edit</h3>
-                                    <p class="mt-1 text-sm text-secondary-500">You can edit your post.</p>
+                                    <h3 class="text-lg leading-6 font-medium text-secondary-900">Blog post create</h3>
+                                    <p class="mt-1 text-sm text-secondary-500">You can create your post.</p>
                                 </div>
 
                                 <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
@@ -34,12 +34,11 @@
                                     <!--body-->
                                     <div class="sm:col-span-6">
                                         <label for="{{ form.body.id_for_label }}" class="block text-sm font-medium text-secondary-700"> {{form.body.label}} </label>
-                                        <div class="mt-1">
-                                            <textarea type="text" id="{{ form.body.id_for_label }}" name="{{ form.body.name }}" rows="5" value="{{ form.body.value }}"
-                                                class="p-2 shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-md border border-secondary-300 rounded-md" >
-                                            </textarea>X
+                                        <div class="mt-1 p-2">
+                                            <textarea id="{{ form.body.id_for_label }}" name="{{ form.body.name }}" rows="3" class="max-w-lg p-2 shadow-sm block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md"></textarea>
+
                                         </div>
-                                        <p class="mt-2 text-sm text-secondary-500">Edit your post content.</p>
+                                        <p class="mt-2 text-sm text-secondary-500">Create your post content.</p>
                                         {% for error in form.body.errors %}
                                             <div class="invalid-feedback d-block text-end"><span class="text-red-500 text-xs italic">{{ error }}</span>
                                             </div>
