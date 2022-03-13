@@ -40,11 +40,28 @@ class SearchResultsListView(ListView):  # new
 
     def get_queryset(self):  # new
         query = self.request.GET.get("q")
-        return Post.objects.filter(
-            Q(title__icontains=query)
-            # | Q(author__username__icontains=query)
-            | Q(body__icontains=query)
+        query_words = query.split(" ")
+        # https://stackoverflow.com/questions/46695150/django-search-fields-in-multiple-models
+        # https://www.codingforentrepreneurs.com/blog/a-multiple-model-django-search-engine/
+        search_fields = ["title", "body"]  #  fields of the same Model
+        print(query_words)
+
+        and_lookup = Q()
+        for query_word in query_words:
+            search_queries = [
+                Q(**{field + "__icontains": query_word}) for field in search_fields
+            ]
+            or_lookup = Q()
+            for query in search_queries:
+                or_lookup = or_lookup | query
+            and_lookup = and_lookup & or_lookup
+
+        qs = sorted(
+            Post.objects.filter(and_lookup).distinct(),
+            key=lambda instance: instance.pk,
+            reverse=True,
         )
+        return qs
 
 
 class BlogCreateView(CreateView):  # new

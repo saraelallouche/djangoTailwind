@@ -3,6 +3,9 @@
     {% for post in page_obj %}
         <tr class="hover:bg-primary-100">
             <td class="px-6 py-2 whitespace-nowrap">
+                <div class="text-sm text-secondary-900">{{ post.id }}</div>
+            </td>
+            <td class="px-6 py-2 whitespace-nowrap">
                 <div class="text-sm text-secondary-900">{{ post.title }}</div>
             </td>
             <td class="hidden px-6 py-2 whitespace-nowrap sm:table-cell">
