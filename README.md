@@ -42,7 +42,8 @@ NPM_BIN_PATH=r"D:\nodejs\npm.cmd"
   pre-commit install
   ```
 
-7. Install and test django-tailwind package
+7. Install and test django-tailwind package. Follow steps here:
+   [https://django-tailwind.readthedocs.io/en/latest/installation.html](https://django-tailwind.readthedocs.io/en/latest/installation.html)
 ```sh
   python manage.py tailwind install
   python manage.py tailwind start

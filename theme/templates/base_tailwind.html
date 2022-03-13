@@ -14,8 +14,16 @@
 
 
         {% tailwind_css %}
-        <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-        <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+        {% block custom_css %}
+            <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+        {% endblock %}
+
+        {% block custom_js %}
+            <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+        {% endblock %}
+
+
     </head>
 
     <body class="antialiased font-sans bg-gray-200">
