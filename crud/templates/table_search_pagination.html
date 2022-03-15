@@ -28,7 +28,7 @@
                                     </td>
                                     <td class="hidden px-4 py-2 whitespace-nowrap sm:table-cell">
                                         <div class="text-sm text-secondary-500">{{ object.created }}</div> </td>
-                                    <td class="hidden px-6 py-2 whitespace-nowrap text-sm text-secondary-500 lg:table-cell max-w-prose truncate">{{ object.body }}</td>
+                                    <td class="hidden px-6 py-2 whitespace-nowrap text-sm text-secondary-500 lg:table-cell max-w-sm truncate">{{ object.body }}</td>
                                     <td class="px-6 py-2 whitespace-nowrap text-right text-sm font-medium">
                                         <a href="{% url 'post_detail' object.pk %}" class="text-primary-600 hover:text-primary-900 pr-2">View</a>
                                         <a href="{% url 'post_edit' object.pk %}" class="text-primary-600 hover:text-primary-900 pr-2">Edit</a>
