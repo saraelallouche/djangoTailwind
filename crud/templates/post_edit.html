@@ -25,7 +25,7 @@
 
                                         <div class="mt-1 flex rounded-md shadow-sm">
                                             <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-secondary-300 bg-secondary-50 text-secondary-500 sm:text-sm"> Title</span>
-                                            <input type="text" name="{{ form.title.html_name }}" id="{{ form.title.id }}" value="{{ form.title.value }}"
+                                            <input type="text" name="{{ form.title.html_name }}" id="title" value="{{ form.title.value }}"
                                                 class="flex-1 focus:ring-primary-500 focus:border-primary-500 block w-full min-w-0 rounded-none rounded-r-md sm:text-sm border-secondary-300">
                                         </div>
                                         {% for error in form.title.errors %}
@@ -36,7 +36,7 @@
                                     <div class="sm:col-span-6">
                                         <label for="{{ form.body.id_for_label }}" class="block text-sm font-medium text-secondary-700"> {{form.body.label}} </label>
                                         <div class="mt-1">
-                                            <textarea id="{{ form.body.id_for_label }}" name="{{ form.body.name }}" rows="3" class="max-w-lg p-2 shadow-sm block w-full focus:ring-primary-500 focus:border-primary-500 sm:text-sm border border-gray-300 rounded-md">{{ form.body.value }}</textarea>
+                                            <textarea id="body" name="{{ form.body.name }}" rows="3" class="max-w-lg p-2 shadow-sm block w-full focus:ring-primary-500 focus:border-primary-500 sm:text-sm border border-gray-300 rounded-md">{{ form.body.value }}</textarea>
 
                                         </div>
                                         <p class="mt-2 text-sm text-secondary-500">Edit your post content.</p>
@@ -52,7 +52,7 @@
                                             <button type="button" class="bg-white py-2 px-4 border border-secondary-300 rounded-md shadow-sm text-sm font-medium text-secondary-700 hover:bg-secondary-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
                                                 Cancel
                                             </button></a>
-                                        <button type="submit" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">Save</button>
+                                        <button type="submit" id= "submit_edit_post" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">Save</button>
                                     </div>
                                 </div>
                             </div>

@@ -2,24 +2,45 @@
 {% extends "base_crud.html" %}
 
 {% block content %}
-
-    <div class="px-0 sm:px-2" id="crud">
-        <div class="p-1 sm:p-2 sm:flex sm:flex-col sm:justify-center">
-            <div class="flex justify-reverse flex-wrap sm:flex sm:items-center px-2 md:px-0 py-6 sm:py-4">
-                <div class="sm:flex-auto ml-2">
-                    <h1 class="text-xl font-semibold text-gray-900">Posts</h1>
-                    <p class="mt-2 text-sm text-gray-700">A list of all the posts including main characteristics.</p>
-                </div>
-                <div class="flex justify-end items-center mt-4">
-                    {% include 'search_bar.html' %}
-                    <!--ADD POST-->
-                    <div class="sm:mt-0 sm:ml-8 sm:flex-none ">
-                        <a href="{% url 'post_create' %}"> <button type="button" class="inline-flex justify-center rounded-md border border-transparent bg-primary-600 px-4 ml-2 py-2 text-sm font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 sm:w-auto">Add Post</button></a>
+    {% if user.is_authenticated %}
+        <div class="px-0 sm:px-2" id="crud">
+            <div class="p-1 sm:p-2 sm:flex sm:flex-col sm:justify-center">
+                <div class="flex justify-reverse flex-wrap sm:flex sm:items-center px-2 md:px-0 py-6 sm:py-4">
+                    <div class="px-2 py-8">
+                        <div class="flex text-gray-900 rounded-md cursor-pointer">
+                            <a href="{% url 'logout'%}" id="logout">
+                                <button type="button" class="inline-flex justify-center rounded-md border border-transparent bg-primary-600 px-4 ml-2 py-2 text-sm font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 sm:w-auto">logout</button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="sm:flex-auto ml-2">
+                        <h1 class="text-xl font-semibold text-gray-900">Posts</h1>
+                        <p class="mt-2 text-sm text-gray-700">A list of all the posts including main characteristics.</p>
+                    </div>
+                    <div class="flex justify-end items-center mt-4">
+                        {% include 'search_bar.html' %}
+                        <!--ADD POST-->
+                        <div class="sm:mt-0 sm:ml-8 sm:flex-none ">
+                            <a href="{% url 'post_create' %}" id="post_add"> <button type="button" class="inline-flex justify-center rounded-md border border-transparent bg-primary-600 px-4 ml-2 py-2 text-sm font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 sm:w-auto">Add Post</button></a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            {% include 'table_search_pagination.html' %}
+                {% include 'table_search_pagination.html' %}
+            </div>
         </div>
-    </div>
+    {% else %}
+        <div class="container p-4 mx-auto flex justify-center">
+            <div class="relative py-4 ">
+                <div class="absolute inset-0 bg-gradient-to-r from-primary-300 to-primary-600 shadow-lg transform -skew-y-4
+                    sm:skew-y-4 sm:-rotate-6 rounded-3xl ">
+                </div>
+
+                <div class="relative p-6 bg-white shadow-lg rounded-3xl sm:px-8 sm:py-16" >
+                    <p class="p-2">You are not logged in.</p>
+                    <a href="{% url 'login' %}" id="to_log_in" class="flex justify-center pt-1"><button type="button" class="rounded-md border border-transparent bg-primary-600 px-4 py-1 text-sm text-white shadow-sm hover:bg-primary-700">Log In</button></a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
 {% endblock content %}

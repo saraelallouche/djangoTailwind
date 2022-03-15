@@ -30,9 +30,9 @@
                                         <div class="text-sm text-secondary-500">{{ object.created }}</div> </td>
                                     <td class="hidden px-6 py-2 whitespace-nowrap text-sm text-secondary-500 lg:table-cell max-w-sm truncate">{{ object.body }}</td>
                                     <td class="px-6 py-2 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="{% url 'post_detail' object.pk %}" class="text-primary-600 hover:text-primary-900 pr-2">View</a>
-                                        <a href="{% url 'post_edit' object.pk %}" class="text-primary-600 hover:text-primary-900 pr-2">Edit</a>
-                                        <a href="{% url 'post_delete' object.pk %}" class="text-primary-600 hover:text-primary-900 pr-2 ">Delete</a>
+                                        <a href="{% url 'post_detail' object.pk %}" id="post_detail" class="text-primary-600 hover:text-primary-900 pr-2">View</a>
+                                        <a href="{% url 'post_edit' object.pk %}" id="post_edit" class="text-primary-600 hover:text-primary-900 pr-2">Edit</a>
+                                        <a href="{% url 'post_delete' object.pk %}" id="post_delete" class="text-primary-600 hover:text-primary-900 pr-2 ">Delete</a>
 
                                     </td>
                                 </tr>
