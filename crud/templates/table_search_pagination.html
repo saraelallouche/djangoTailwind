@@ -20,13 +20,13 @@
                         <tbody class="bg-white divide-y divide-secondary-200">
                             {% for object in page_obj %}
                                 <tr class="hover:bg-primary-100">
-                                    <td class="px-6 py-2 whitespace-nowrap">
+                                    <td class="text-center whitespace-nowrap">
                                         <div class="text-sm text-secondary-900">{{ object.id }}</div>
                                     </td>
                                     <td class="px-6 py-2 whitespace-nowrap">
                                         <div class="text-sm text-secondary-900">{{ object.title }}</div>
                                     </td>
-                                    <td class="hidden px-6 py-2 whitespace-nowrap sm:table-cell">
+                                    <td class="hidden px-4 py-2 whitespace-nowrap sm:table-cell">
                                         <div class="text-sm text-secondary-500">{{ object.created }}</div> </td>
                                     <td class="hidden px-6 py-2 whitespace-nowrap text-sm text-secondary-500 lg:table-cell max-w-prose truncate">{{ object.body }}</td>
                                     <td class="px-6 py-2 whitespace-nowrap text-right text-sm font-medium">
