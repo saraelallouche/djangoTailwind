@@ -1,0 +1,73 @@
+{% extends "base_tailwind.html" %}
+{% load static tailwind_tags %}
+
+{% block content %}
+
+    <div class="nav-right">
+
+        <button  class="m-4 px-2 py-1 bg-green-100 hover:bg-green-200 shadow-lg rounded-md  ">
+            <a href="{% url 'user_add' %}">+ New user</a>
+        </button>
+    </div>
+    <div class="flex flex-col p-4">
+        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                    <table class="min-w-full divide-y divide-gray-200">
+
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">City</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">State/Province</th>
+                                <th scope="col" class="relative px-6 py-3">
+                                    <span class="sr-only">Edit</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        {% for object in object_list %}
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+
+                                            <div class="flex-shrink-0 h-10 w-10">
+                                                {% if object.image %}
+                                                    <img src="{{ object.image.url }}" class="h-10 w-10 rounded-full"  alt="maldives_img">
+                                                {% else %}
+                                                    <svg class="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                                                        <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                                                    </svg>
+                                                {% endif %}
+                                            </div>
+                                            <div class="ml-4">
+                                                <div class="text-sm font-medium text-gray-900">{{ object.lastname }}</div>
+                                                <div class="text-sm text-gray-500">{{ object.firstname }}</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900">{{ object.email }}</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"> {{ object.city }} </span>
+                                        <div class="text-sm text-gray-900">{{ object.zipcode }}</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ object.state }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <a href="{% url 'user_delete' object.pk %}" class="text-primary-600 hover:text-primary-900 hover:bg-green-100 py-1 px-2 rounded-md">Delete</a>
+                                        <a href="{% url 'user_edit' object.pk %}" class="text-primary-600 hover:text-primary-900 hover:bg-green-100 py-1 px-2 rounded-md">Edit</a>
+                                    </td>
+                                </tr>
+
+                                <!-- More people... -->
+                            </tbody>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

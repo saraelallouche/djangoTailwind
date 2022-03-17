@@ -1,0 +1,72 @@
+{% extends "base_crud.html" %}
+
+{% block content %}
+
+    <!-- This example requires Tailwind CSS v2.0+ -->
+    <div class= "container mx-auto ">
+        <div class="w-full p-4">
+            <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+                <div class="px-4 py-5 sm:px-6">
+                    <h3 class="text-lg leading-6 font-medium text-secondary-900">Post Information</h3>
+                    <p class="mt-1 max-w-2xl text-sm text-secondary-500">Personal details and post.</p>
+                </div>
+                <div class="border-t border-secondary-200 px-4 py-5 sm:p-0">
+                    <dl class="sm:divide-y sm:divide-secondary-200">
+                        {#                        <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">#}
+                        {#                            <dt class="text-sm font-medium text-secondary-500">Author name</dt>#}
+                        {#                            <dd class="mt-1 text-sm text-secondary-900 sm:mt-0 sm:col-span-2">{{ object.author }}</dd>#}
+                        {#                        </div>#}
+                        <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <dt class="text-sm font-medium text-secondary-500">Title</dt>
+                            <dd class="mt-1 text-sm text-secondary-900 sm:mt-0 sm:col-span-2">{{ object.title }}</dd>
+                        </div>
+                        <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <dt class="text-sm font-medium text-secondary-500">Created Date</dt>
+                            <dd class="mt-1 text-sm text-secondary-900 sm:mt-0 sm:col-span-2">{{ object.created }}</dd>
+                        </div>
+                        <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <dt class="text-sm font-medium text-secondary-500">Updated Date</dt>
+                            <dd class="mt-1 text-sm text-secondary-900 sm:mt-0 sm:col-span-2">{{ object.last_updated }}</dd>
+                        </div>
+                        <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <dt class="text-sm font-medium text-secondary-500">Body</dt>
+                            <dd class="mt-1 text-sm text-secondary-900 sm:mt-0 sm:col-span-2">{{ object.body }}</dd>
+                        </div>
+
+                        {% comment %} <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <dt class="text-sm font-medium text-secondary-500">Attachments</dt>
+                            <dd class="mt-1 text-sm text-secondary-900 sm:mt-0 sm:col-span-2">
+                                <ul role="list" class="border border-secondary-200 rounded-md divide-y divide-secondary-200">
+                                    <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
+                                        <div class="w-0 flex-1 flex items-center">
+                                            <!-- Heroicon name: solid/paper-clip -->
+                                            <svg class="flex-shrink-0 h-5 w-5 text-secondary-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                <path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd" />
+                                            </svg>
+                                            <span class="ml-2 flex-1 w-0 truncate"> resume_back_end_developer.pdf </span>
+                                        </div>
+                                        <div class="ml-4 flex-shrink-0">
+                                            <a href="#" class="font-medium text-primary-600 hover:text-primary-500"> Download </a>
+                                        </div>
+                                    </li>
+                                    <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
+                                        <div class="w-0 flex-1 flex items-center">
+                                            <!-- Heroicon name: solid/paper-clip -->
+                                            <svg class="flex-shrink-0 h-5 w-5 text-secondary-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                <path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd" />
+                                            </svg>
+                                            <span class="ml-2 flex-1 w-0 truncate"> coverletter_back_end_developer.pdf </span>
+                                        </div>
+                                        <div class="ml-4 flex-shrink-0">
+                                            <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500"> Download </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </dd>
+                        </div> {% endcomment %}
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

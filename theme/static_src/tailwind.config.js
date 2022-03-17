@@ -15,7 +15,7 @@ module.exports = {
          * HTML. Paths to Django template files that will contain Tailwind CSS classes.
          */
 
-        /*  Templates within theme app (<tailwind_app_name>/templates), e.g. base.html. */
+        /*  Templates within theme app (<tailwind_app_name>/templates), e.g. base_tailwind.html. */
         '../templates/**/*.html',
 
         /*
@@ -35,7 +35,7 @@ module.exports = {
          * JS: If you use Tailwind CSS in JavaScript, uncomment the following lines and make sure
          * patterns match your project structure.
          */
-        /* JS 1: Ignore any JavaScript in node_modules folder. */
+        /* JS 1: Ignore any JavaScript in node_modules models. */
         // '!../../**/node_modules',
         /* JS 2: Process all JavaScript files in the project. */
         // '../../**/*.js',
@@ -53,7 +53,7 @@ module.exports = {
               cyan: colors.cyan,
               primary: colors.blue,
               secondary: colors.gray,
-              indigo: colors.blue,
+              danger: colors.red,
             },
             fontFamily: {
                 sans: ['Inter var', defaultTheme.fontFamily.sans],

@@ -1,0 +1,12 @@
+<!-- templates/base.html -->
+{% extends "base_tailwind.html" %}
+
+{% block title %}
+    <title>Django post crud example</title>
+{% endblock %}
+
+{% block content %}
+    <header class='postList'>
+        <h1><a href="{% url 'home' %}">Django blog</a></h1>
+    </header>
+{% endblock content %}

@@ -1,0 +1,73 @@
+{% extends "base_crud.html" %}
+
+
+{% block content %}
+    <div class="min-h-screen bg-secondary-100 flex flex-col justify-center py-4">
+        <div class="container px-4 py-8 mx-auto flex justify-center">
+            <form method="post" class="relative py-4 sm:max-w-xl sm:mx-auto">
+                <div class="absolute inset-0 bg-gradient-to-r from-primary-300 to-primary-600 shadow-lg transform -skew-y-4
+                    sm:skew-y-4 sm:-rotate-6 rounded-3xl ">
+                </div>
+
+                <div class="relative p-6 bg-white shadow-lg rounded-3xl sm:px-8 sm:py-16" >
+                    <div class="max-w-md mx-auto">
+                        {% csrf_token %}
+                        <div>
+                            <div class="flex justify-center">
+                                <img src="" class="w-1/2 m-4" />
+                            </div>
+                            <h1 class="text-2xl text-center p-2">
+                                Tailwind ui
+                            </h1>
+                        </div>
+                        <div class="divide-y divide-secondary-200">
+                            <div class=" py-8 text-base leading-6 space-y-4 text-secondary-700 sm:text-lg sm:leading-7">
+                                {% if form.non_field_errors %}
+                                    <div class=" alert alert-danger text-xs text-red-400 pb-2 "  role="alert">
+                                        {{ form.non_field_errors|first }}
+                                    </div>
+                                {% endif %}
+                                <div class="relative">
+                                    <label for="inputUsername" class="text-secondary-800 text-sm ">Nom d'utilisateur</label>
+                                    <input autocomplete="off" id="inputUsername" name="username" type="text" value="{{ form.username.value|default:'' }}"
+                                        class="peer px-6 py-4 placeholder-transparent rounded h-4 text-sm w-full border-secondary-300
+                                            text-secondary-700 focus:outline-none focus:border-primary-600 {%if form.username.errors %}is-invalid{% endif %}"
+                                        placeholder="Nom d'utilisateur" />
+                                    {% if form.username.errors %}
+                                        <div class="invalid-feedback text-red-500 text-xs">
+                                            {{ form.username.errors|first }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="relative">
+                                    <label for="inputPassword" class="text-secondary-800 text-sm"> Mot de passe </label>
+                                    <input autocomplete="off" id="inputPassword" name="password" type="password" class="peer px-6 py-4 placeholder-transparent
+                                        h-4 text-sm w-full rounded border-secondary-300 text-secondary-900 focus:outline-none focus:border-primary-600
+                                        {% if form.password.errors %}is-invalid{% endif %}" placeholder="Mot de passe" />
+                                    {% if form.password.errors %}
+                                        <div class="invalid-feedback text-red-500 text-xs">
+                                            {{ form.password.errors|first }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+
+                                <button type="submit"  id="login_button" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm
+                                    tracking-widest rounded-md text-white bg-primary-700 hover:bg-primary-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                    <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                                        <!-- Heroicon name: solid/lock-closed -->
+                                        <svg class="h-5 w-5 text-primary-500 group-hover:text-primary-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                    Connexion
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    </div>
+
+{% endblock content %}

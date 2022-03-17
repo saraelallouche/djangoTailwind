@@ -16,8 +16,22 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
-    path('adminjlk/', admin.site.urls),
+    # ADMIN - CHANGE OF BY DEFAULT URL FOR SECURITY REASONS
+    path("adminjlk/", admin.site.urls),
+    # CUSTOM USER - AUTHENTICATION
+    path("accounts/", include("django.contrib.auth.urls")),
+    # DJANGO-TAILWIND THIRD APP
+    path("__reload__/", include("django_browser_reload.urls")),
+    # SNIPPETS LOCAL APP
     path("", include("snippets.urls")),
-    path("__reload__/", include("django_browser_reload.urls")), # for tailwind
+    # CRUD
+    path("crud/", include("crud.urls")),
+    # DJANGO-DEBUG-TOOLBAR
+    path("__debug__/", include("debug_toolbar.urls")),
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
