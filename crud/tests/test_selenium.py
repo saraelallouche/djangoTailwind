@@ -69,5 +69,5 @@ class TestBlog(StaticLiveServerTestCase):
         self.browser.find_element(By.ID, "submit_delete_post").click()
 
         # Logout button
-        self.browser.find_element(By.ID, "logout").click()
-        self.browser.delete_all_cookies()
+        # self.browser.find_element(By.ID, "logout").click()
+        # self.browser.delete_all_cookies()
