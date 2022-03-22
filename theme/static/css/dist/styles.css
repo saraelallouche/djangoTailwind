@@ -3503,6 +3503,26 @@ select {
   --tw-ring-offset-width: 2px;
 }
 
+.hover\:h-8:hover {
+  height: 2rem;
+}
+
+.hover\:w-5:hover {
+  width: 1.25rem;
+}
+
+.hover\:w-4:hover {
+  width: 1rem;
+}
+
+.hover\:w-7:hover {
+  width: 1.75rem;
+}
+
+.hover\:w-8:hover {
+  width: 2rem;
+}
+
 .hover\:border-green-300:hover {
   --tw-border-opacity: 1;
   border-color: rgb(134 239 172 / var(--tw-border-opacity));
