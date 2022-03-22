@@ -3479,6 +3479,10 @@ select {
   transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
 }
 
+.first\:flex-shrink-0:first-child {
+  flex-shrink: 0;
+}
+
 .focus-within\:outline-none:focus-within {
   outline: 2px solid transparent;
   outline-offset: 2px;
@@ -4664,6 +4668,10 @@ select {
     flex-direction: column;
   }
 
+  .md\:items-start {
+    align-items: flex-start;
+  }
+
   .md\:items-center {
     align-items: center;
   }
@@ -4723,6 +4731,10 @@ select {
     --tw-space-x-reverse: 0;
     margin-right: calc(1.5rem * var(--tw-space-x-reverse));
     margin-left: calc(1.5rem * calc(1 - var(--tw-space-x-reverse)));
+  }
+
+  .md\:overflow-x-hidden {
+    overflow-x: hidden;
   }
 
   .md\:bg-white {
@@ -4808,6 +4820,10 @@ select {
 
   .md\:pl-0 {
     padding-left: 0px;
+  }
+
+  .md\:pb-2 {
+    padding-bottom: 0.5rem;
   }
 
   .md\:text-6xl {
