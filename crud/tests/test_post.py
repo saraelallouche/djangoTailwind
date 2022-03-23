@@ -31,7 +31,9 @@ class BlogTests(TestCase):
 
     def test_url_exists_at_correct_location_detailview(self):  # new
         response = self.client.get("/crud/post/1")
-        self.assertEqual(response.status_code, 301)
+        self.assertEqual(
+            response.status_code, 301
+        )  # TODO: Change the status_code to 200 and fixed the test so it pass since the add post adds doesnt add to the first of the list.
 
     def test_post_listview(self):  # new
         response = self.client.get(reverse("home"))
