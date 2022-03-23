@@ -8,12 +8,14 @@
 {% block navbar %}
     {% include 'head_sidebar.html' %}
 {% endblock %}
+
 {% block content %}
     <header class='postList'>
         <h1><a href="{% url 'home' %}">Django blog</a></h1>
     </header>
 
 {% endblock %}
+
 {% block end_navbar %}
     {% include 'end_sidebar.html' %}
 {% endblock %}
