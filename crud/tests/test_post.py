@@ -29,9 +29,9 @@ class BlogTests(TestCase):
         response = self.client.get("/crud/")
         self.assertEqual(response.status_code, 200)
 
-    # def test_url_exists_at_correct_location_detailview(self):  # new
-    #     response = self.client.get("/crud/post/1")
-    #     self.assertEqual(response.status_code, 200)
+    def test_url_exists_at_correct_location_detailview(self):  # new
+        response = self.client.get("/crud/post/1")
+        self.assertEqual(response.status_code, 301)
 
     def test_post_listview(self):  # new
         response = self.client.get(reverse("home"))
