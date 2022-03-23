@@ -33,15 +33,15 @@ class TestBlog(StaticLiveServerTestCase):
         print(self.live_server_url)
 
         # opening the website
-        self.browser.get("http://127.0.0.1:8000/")
+        self.browser.get("http://127.0.0.1:8000/accounts/login/")
         wait = WebDriverWait(self.browser, 20)
-        self.browser.find_element(By.ID, "to_log_in").click()
 
         # doing the login
         self.browser.find_element(By.ID, "inputUsername").send_keys(username)
         self.browser.find_element(By.ID, "inputPassword").send_keys(password)
         self.browser.find_element(By.ID, "login_button").click()
 
+        # opening the website
         self.browser.get("http://127.0.0.1:8000/crud")
         wait = WebDriverWait(self.browser, 20)
         # post add button
