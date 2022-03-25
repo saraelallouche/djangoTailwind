@@ -4,32 +4,41 @@
     <head>
         {% block title %}
             <title>Project Name</title>
-        {% endblock %}
+        {% endblock title %}
 
         {% block meta_tags %}
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        {% endblock %}
+        {% endblock meta_tags %}
 
 
         {% tailwind_css %}
 
         {% block custom_css %}
             <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-        {% endblock %}
+        {% endblock custom_css %}
 
         {% block custom_js %}
             <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-        {% endblock %}
-
+        {% endblock custom_js %}
 
     </head>
 
     <body>
-        {% block content %}
+        {% block sidebar %}
+            {% block sidecontent %}
+            {% endblock sidecontent %}
+        {% endblock sidebar %}
 
-        {% endblock %}
+        {% block content %}
+        {% endblock content %}
 
     </body>
+
+    {% block custom_tailwind_integration %}
+        <grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration>
+    {% endblock %}
+
+
 </html>

@@ -15,7 +15,6 @@ from django.db.models import Q
 from django.shortcuts import render
 
 
-# Create your views here.
 class BlogListView(ListView):
     paginate_by = 15
     model = Post

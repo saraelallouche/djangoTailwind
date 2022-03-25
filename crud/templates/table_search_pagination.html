@@ -1,16 +1,16 @@
 <div class="px-4 sm:px-6 lg:px-8">
     <div class="mt-8 flex flex-col">
         <div class="-my-2 -mx-4 sm:-mx-6 lg:-mx-8">
-            <div class="inline-block min-w-full py-2 align-middle">
+            <div class="inline-block min-w-full p-2 align-middle">
                 <div class="shadow-sm ring-1 ring-black ring-opacity-5">
                     <table class="min-w-full border-separate" style="border-spacing: 0">
-                        <thead class="bg-gray-50">
+                        <thead class="bg-secondary-50">
                             <tr>
-                                <th scope="col" class="sticky top-0 z-10 border-b border-gray-300 bg-gray-50 bg-opacity-75 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter sm:pl-6 lg:pl-8">Id</th>
-                                <th scope="col" class="sticky top-0 z-10 border-b border-gray-300 bg-gray-50 bg-opacity-75 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter sm:pl-6 lg:pl-8">Title</th>
-                                <th scope="col" class="sticky top-0 z-10 hidden border-b border-gray-300 bg-gray-50 bg-opacity-75 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter sm:table-cell">Created Date</th>
-                                <th scope="col" class="sticky top-0 z-10 hidden border-b border-gray-300 bg-gray-50 bg-opacity-75 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter lg:table-cell">Body</th>
-                                <th scope="col" class="sticky top-0 z-10 border-b border-gray-300 bg-gray-50 bg-opacity-75 py-3.5 pr-4 pl-3 backdrop-blur backdrop-filter sm:pr-6 lg:pr-8">
+                                <th scope="col" class="sticky top-0 z-10 border-b border-secondary-300 bg-secondary-50 bg-opacity-75 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-secondary-900 backdrop-blur backdrop-filter sm:pl-6 lg:pl-8">Id</th>
+                                <th scope="col" class="sticky top-0 z-10 border-b border-secondary-300 bg-secondary-50 bg-opacity-75 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-secondary-900 backdrop-blur backdrop-filter sm:pl-6 lg:pl-8">Title</th>
+                                <th scope="col" class="sticky top-0 z-10 hidden border-b border-secondary-300 bg-secondary-50 bg-opacity-75 px-3 py-3.5 text-left text-sm font-semibold text-secondary-900 backdrop-blur backdrop-filter sm:table-cell">Created Date</th>
+                                <th scope="col" class="sticky top-0 z-10 hidden border-b border-secondary-300 bg-secondary-50 bg-opacity-75 px-3 py-3.5 text-left text-sm font-semibold text-secondary-900 backdrop-blur backdrop-filter lg:table-cell">Body</th>
+                                <th scope="col" class="sticky top-0 z-10 border-b border-secondary-300 bg-secondary-50 bg-opacity-75 py-3.5 pr-4 pl-3 backdrop-blur backdrop-filter sm:pr-6 lg:pr-8">
                                     <span class="sr-only">Edit</span>
                                     <span class="sr-only">Delete</span>
                                     <span class="sr-only">View</span>
@@ -19,7 +19,7 @@
                         </thead>
                         <tbody class="bg-white divide-y divide-secondary-200">
                             {% for object in page_obj %}
-                                <tr class="hover:bg-primary-100">
+                                <tr class="hover:bg-secondary-100">
                                     <td class="text-center whitespace-nowrap">
                                         <div class="text-sm text-secondary-900">{{ object.id }}</div>
                                     </td>
@@ -29,11 +29,28 @@
                                     <td class="hidden px-4 py-2 whitespace-nowrap sm:table-cell">
                                         <div class="text-sm text-secondary-500">{{ object.created }}</div> </td>
                                     <td class="hidden px-6 py-2 whitespace-nowrap text-sm text-secondary-500 lg:table-cell max-w-sm truncate">{{ object.body }}</td>
-                                    <td class="px-6 py-2 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="{% url 'post_detail' object.pk %}" id="post_detail" class="text-primary-600 hover:text-primary-900 pr-2">View</a>
-                                        <a href="{% url 'post_edit' object.pk %}" id="post_edit" class="text-primary-600 hover:text-primary-900 pr-2">Edit</a>
-                                        <a href="{% url 'post_delete' object.pk %}" id="post_delete" class="text-primary-600 hover:text-primary-900 pr-2 ">Delete</a>
-
+                                    <td class="w-full flex flex-wrap">
+                                        <div class="p-1">
+                                            <a href="{% url 'post_detail' object.pk %}" id="post_detail" class="inline-flex items-center p-1 border border-transparent shadow-sm text-xs leading-4 font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                                <!-- Heroicon name: solid/mail -->
+                                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path></svg>
+                                                View
+                                            </a>
+                                        </div>
+                                        <div class="p-1">
+                                            <a href="{% url 'post_edit' object.pk %}" id="post_edit" class="inline-flex items-center p-1 border border-transparent shadow-sm text-xs leading-4 font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                                <!-- Heroicon name: solid/mail -->
+                                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                                                Edit
+                                            </a>
+                                        </div>
+                                        <div class="p-1">
+                                            <a href="{% url 'post_delete' object.pk %}" id="post_delete" class="inline-flex items-center p-1 border border-transparent shadow-sm text-xs leading-4 font-medium rounded-md text-white bg-danger-600 hover:bg-danger-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-danger-500">
+                                                <!-- Heroicon name: solid/mail -->
+                                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                                                Delete
+                                            </a>
+                                        </div>
                                     </td>
                                 </tr>
                             {% endfor %}
