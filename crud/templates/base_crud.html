@@ -3,19 +3,17 @@
 
 {% block title %}
     <title>Django post crud example</title>
-{% endblock %}
+{% endblock title %}
 
-{% block navbar %}
+{% block sidebar %}
     {% include 'head_sidebar.html' %}
-{% endblock %}
+    {% block sidecontent %}
+    {% endblock sidecontent %}
+    {% include 'end_sidebar.html' %}
+{% endblock sidebar %}
 
 {% block content %}
-    <header class='postList'>
-        <h1><a href="{% url 'home' %}">Django blog</a></h1>
-    </header>
-
-{% endblock %}
+{% endblock content %}
 
 {% block end_navbar %}
-    {% include 'end_sidebar.html' %}
-{% endblock %}
+{% endblock end_navbar %}
