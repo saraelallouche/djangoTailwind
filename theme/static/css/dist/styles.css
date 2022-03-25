@@ -4731,6 +4731,14 @@ select {
     padding-left: 1.5rem;
   }
 
+  .md\:pl-5 {
+    padding-left: 1.25rem;
+  }
+
+  .md\:pl-64 {
+    padding-left: 16rem;
+  }
+
   .md\:text-6xl {
     font-size: 3.75rem;
     line-height: 1;
