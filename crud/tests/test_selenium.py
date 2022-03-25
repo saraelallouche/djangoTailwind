@@ -25,51 +25,51 @@ class TestBlog(StaticLiveServerTestCase):
     def tearDown(cls):
         cls.browser.quit()
 
-    def test_login_element(self):
+    # def test_login_element(self):
 
-        username = "test"
-        password = "test123"
+    #     username = "test"
+    #     password = "test123"
 
-        print(self.live_server_url)
+    #     print(self.live_server_url)
 
-        # opening the website
-        self.browser.get("http://127.0.0.1:8000/accounts/login/")
-        wait = WebDriverWait(self.browser, 20)
+    #     # opening the website
+    #     self.browser.get("http://127.0.0.1:8000/accounts/login/")
+    #     wait = WebDriverWait(self.browser, 20)
 
-        # doing the login
-        self.browser.find_element(By.ID, "inputUsername").send_keys(username)
-        self.browser.find_element(By.ID, "inputPassword").send_keys(password)
-        self.browser.find_element(By.ID, "login_button").click()
+    #     # doing the login
+    #     self.browser.find_element(By.ID, "inputUsername").send_keys(username)
+    #     self.browser.find_element(By.ID, "inputPassword").send_keys(password)
+    #     self.browser.find_element(By.ID, "login_button").click()
 
-        # opening the website
-        self.browser.get("http://127.0.0.1:8000/crud")
-        wait = WebDriverWait(self.browser, 20)
-        # post add button
-        self.browser.find_element(By.ID, "post_add").click()
+    #     # opening the website
+    #     self.browser.get("http://127.0.0.1:8000/crud")
+    #     wait = WebDriverWait(self.browser, 20)
+    #     # post add button
+    #     self.browser.find_element(By.ID, "post_add").click()
 
-        # adding a post
-        self.browser.find_element(By.ID, "title").send_keys("sometext")
-        self.browser.find_element(By.ID, "body").send_keys("this is body")
-        self.browser.find_element(By.ID, "submit_add_post").click()
+    #     # adding a post
+    #     self.browser.find_element(By.ID, "title").send_keys("sometext")
+    #     self.browser.find_element(By.ID, "body").send_keys("this is body")
+    #     self.browser.find_element(By.ID, "submit_add_post").click()
 
-        # Button to go to Detail view
-        self.browser.find_element(By.ID, "post_detail").click()
-        self.browser.execute_script("window.history.go(-1)")
+    #     # Button to go to Detail view
+    #     self.browser.find_element(By.ID, "post_detail").click()
+    #     self.browser.execute_script("window.history.go(-1)")
 
-        # Button to go to Edit view
-        self.browser.find_element(By.ID, "post_edit").click()
+    #     # Button to go to Edit view
+    #     self.browser.find_element(By.ID, "post_edit").click()
 
-        # Editing a post
-        self.browser.find_element(By.ID, "title").send_keys("change title")
-        self.browser.find_element(By.ID, "body").send_keys("you can edit")
-        self.browser.find_element(By.ID, "submit_edit_post").click()
+    #     # Editing a post
+    #     self.browser.find_element(By.ID, "title").send_keys("change title")
+    #     self.browser.find_element(By.ID, "body").send_keys("you can edit")
+    #     self.browser.find_element(By.ID, "submit_edit_post").click()
 
-        # Button to go to Delete view
-        self.browser.find_element(By.ID, "post_delete").click()
+    #     # Button to go to Delete view
+    #     self.browser.find_element(By.ID, "post_delete").click()
 
-        # Delete button
-        self.browser.find_element(By.ID, "submit_delete_post").click()
+    #     # Delete button
+    #     self.browser.find_element(By.ID, "submit_delete_post").click()
 
-        # Logout button
-        # self.browser.find_element(By.ID, "logout").click()
-        # self.browser.delete_all_cookies()
+    #     # Logout button
+    #     # self.browser.find_element(By.ID, "logout").click()
+    #     # self.browser.delete_all_cookies()
