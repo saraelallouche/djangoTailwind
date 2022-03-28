@@ -7,6 +7,8 @@ from ..views import (
     BlogDeleteView,
     BlogUpdateView,
     BlogCreateView,
+    CustomFileAddView,
+    CustomFileListView,
 )
 
 urlpatterns = [
@@ -16,4 +18,6 @@ urlpatterns = [
     path("post/<int:pk>/edit/", BlogUpdateView.as_view(), name="post_edit"),
     path("post/<int:pk>/delete/", BlogDeleteView.as_view(), name="post_delete"),
     path("search/", SearchResultsListView.as_view(), name="search_results"),
+    path("file/add", CustomFileAddView.as_view(), name="file_add"),
+    path("file/list", CustomFileListView.as_view(), name="file_list"),
 ]
