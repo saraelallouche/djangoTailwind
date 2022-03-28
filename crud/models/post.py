@@ -10,6 +10,8 @@ class Post(models.Model):
         auto_now=True, editable=False
     )  # useful for audit of database
 
+    post_date = models.DateTimeField(blank=True, null=True, verbose_name="Date")
+
     # blank, null and verbose are not mandatory, but it is helpful to define the values,
     # if null=True including a default value could be useful
     title = models.CharField(
