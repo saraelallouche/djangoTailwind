@@ -1,0 +1,30 @@
+{% extends "base_tailwind.html" %}
+
+{% block content %}
+    <body class="bg-secondary-500">
+        <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-secondary-200 sm:pt-5">
+            <div class="mt-1 sm:mt-0 sm:col-span-2">
+
+                <select
+                    id="course"
+                    name="course"
+                    autocomplete="course-name"
+                    class="max-w-lg block focus:ring-primary-500 focus:border-primary-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-secondary-300 rounded-md"
+                    hx-get="{% url "modules" %}"
+                    hx-trigger="change"
+                    hx-target="#modules"
+                >
+                    <option selected>Open this select menu</option>
+                    {% for course in courses %}
+                        <option value="{{ course.pk }}"> {{ course.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <div id="modules">
+            {% include "courses/partials/modules.html" %}
+        </div>
+    </body>
+
+{% endblock content %}

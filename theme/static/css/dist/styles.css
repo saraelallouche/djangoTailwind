@@ -4327,6 +4327,11 @@ select {
     border-color: rgb(229 231 235 / var(--tw-border-opacity));
   }
 
+  .sm\:border-secondary-200 {
+    --tw-border-opacity: 1;
+    border-color: rgb(229 231 235 / var(--tw-border-opacity));
+  }
+
   .sm\:p-0 {
     padding: 0px;
   }
@@ -4522,6 +4527,11 @@ select {
   }
 
   .sm\:text-gray-700 {
+    --tw-text-opacity: 1;
+    color: rgb(55 65 81 / var(--tw-text-opacity));
+  }
+
+  .sm\:text-secondary-700 {
     --tw-text-opacity: 1;
     color: rgb(55 65 81 / var(--tw-text-opacity));
   }
