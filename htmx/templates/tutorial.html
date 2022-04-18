@@ -1,0 +1,35 @@
+{% extends "base_tailwind.html" %}
+
+{% block content %}
+
+    <button hx-get="{% url 'home' %}"
+        hx-trigger="click"
+        hx-target="#parent-div"
+        {# hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' #}
+        hx-swap="outerHTML">
+        Click Me!
+    </button>
+
+    <div hx-get="{% url 'home' %}"
+        hx-trigger="mouseenter once"
+        hx-target="#parent-div"
+        {# hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' #}
+        hx-swap="outerHTML">
+        [Here Mouse, Mouse!]
+    </div>
+    <div hx-get="{% url 'home' %}"
+        hx-trigger="click[ctrlKey]"
+        hx-target="#parent-div"
+        {# hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' #}
+        hx-swap="outerHTML">
+        Control Click Me
+    </div>
+
+
+    <div id="parent-div">
+        Empty
+    </div>
+
+
+
+{% endblock content %}

@@ -52,6 +52,7 @@ DJANGO_APPS = [
 LOCAL_APPS = [
     "snippets",  # tailwindUI snippets
     "crud",  # crud example model
+    "htmx",  # htmx
 ]
 
 EXTERNAL_APPS = [

@@ -12,19 +12,18 @@
             <meta http-equiv="X-UA-Compatible" content="ie=edge">
         {% endblock meta_tags %}
 
-
         {% tailwind_css %}
 
         {% block custom_css %}
-
-            {% comment %} <link rel="stylesheet" href="https://rsms.me/inter/inter.css"> {% endcomment %}
         {% endblock custom_css %}
 
-        {% block custom_js %}
+        {% block base_js %}
             <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+            {# to be removed in production #}
+            <script src="https://unpkg.com/htmx.org@1.7.0" integrity="sha384-EzBXYPt0/T6gxNp0nuPtLkmRpmDBbjg6WmCUZRLXBBwYYmwAUxzlSGej0ARHX0Bo" crossorigin="anonymous" defer></script>
+        {% endblock base_js %}
 
-
-
+        {% block custom_js %}
         {% endblock custom_js %}
 
     </head>

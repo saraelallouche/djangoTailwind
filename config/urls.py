@@ -30,6 +30,8 @@ urlpatterns = [
     path("", include("snippets.urls")),
     # CRUD
     path("crud/", include("crud.urls")),
+    # HTMX
+    path("htmx/", include("htmx.urls")),
     # DJANGO-DEBUG-TOOLBAR
     path("__debug__/", include("debug_toolbar.urls")),
 ]
