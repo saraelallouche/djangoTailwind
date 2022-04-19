@@ -10,6 +10,13 @@
             {{ todo.title }}
         </p>
     </div>
+    <div class="w-1/5 py-3 ">
+        {{ todo.course }}
+    </div>
+    <div class="w-1/5 py-3 ">
+        {{ todo.module }}
+    </div>
+
     <div class="w-1/5 px-6 py-3 flex justify-end space-x-4">
         {% if not todo.is_done %}
             <form

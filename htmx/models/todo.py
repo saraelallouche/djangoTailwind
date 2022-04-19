@@ -1,4 +1,5 @@
 from django.db import models
+from htmx.models.course import Course, Module
 
 
 class Todo(models.Model):
@@ -14,6 +15,13 @@ class Todo(models.Model):
     )
     title = models.CharField(
         max_length=255, blank=False, null=False, verbose_name="Title"
+    )
+
+    course = models.ForeignKey(
+        Course, null=True, on_delete=models.CASCADE, related_name="todos"
+    )
+    module = models.ForeignKey(
+        Module, null=True, on_delete=models.CASCADE, related_name="todos"
     )
     is_done = models.BooleanField(default=False)
 
