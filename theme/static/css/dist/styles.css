@@ -3682,6 +3682,11 @@ select {
   color: rgb(127 29 29 / var(--tw-text-opacity));
 }
 
+.hover\:text-white:hover {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
 .hover\:underline:hover {
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
@@ -4835,6 +4840,10 @@ select {
 
   .md\:pl-10 {
     padding-left: 2.5rem;
+  }
+
+  .md\:pt-0 {
+    padding-top: 0px;
   }
 
   .md\:text-6xl {

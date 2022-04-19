@@ -3,7 +3,7 @@
     <div class="w-4/5 py-3">
         <p
             class="px-6 text-xs text-primary-900"
-            hx-get="edit/{{ todo.id }}"
+            hx-get="{% url "edit_todo" todo.id %}"
             hx-target="this"
             hx-swap="outerHTML"
         >
@@ -13,7 +13,7 @@
     <div class="w-1/5 px-6 py-3 flex justify-end space-x-4">
         {% if not todo.is_done %}
             <form
-                hx-put="update/{{ todo.id }}"
+                hx-put="{% url "update_todo" todo.id %}"
                 hx-target="closest article"
                 hx-swap="outerHTML"
                 hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
@@ -29,7 +29,7 @@
 
         <a href="#"
             class="text-danger-600 hover:text-danger-900"
-            hx-delete="delete/{{ todo.id }}"
+            hx-delete="{% url "delete_todo" todo.id %}"
             hx-target="closest article"
             hx-swap="outerHTML"
             hx-confirm="Are you sure of erasing {{ todo.title }} ?"
