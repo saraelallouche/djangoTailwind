@@ -4,8 +4,7 @@ from django.views.generic import TemplateView
 from django.views.decorators.http import require_http_methods
 
 
-from .models import Todo
-from .models import Course, Module
+from htmx.models.todo import Todo
 
 
 class DesignView(TemplateView):
@@ -51,18 +50,3 @@ def delete_todo(request, pk):
     todo = Todo.objects.get(pk=pk)
     todo.delete()
     return HttpResponse()
-
-
-def courses(request):
-    courses = Course.objects.all()
-    context = {"courses": courses}
-    return render(request, "courses/university.html", context)
-
-
-@require_http_methods(["GET"])
-# Change urls
-def modules(request):
-    course = request.GET.get("course", "")
-    modules = Module.objects.filter(course=course)
-    context = {"modules": modules}
-    return render(request, "courses/partials/modules.html", context)
