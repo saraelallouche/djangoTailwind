@@ -1,0 +1,6 @@
+<select id=modules name="modules" autocomplete="modules-name" class="max-w-lg block focus:ring-primary-500 focus:border-primary-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-secondary-300 rounded-md">
+    <option selected>Open this select menu</option>
+    {% for module in modules %}
+        <option value="{{ module.pk }}"> {{ module.name }}</option>
+    {% endfor %}
+</select>

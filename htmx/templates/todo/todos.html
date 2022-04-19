@@ -13,8 +13,31 @@
                 hx-target="#todos"
                 hx-swap="afterend"
                 hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+                hx-trigger="submit"
             >
                 <input type="text" name="title" class="title flex-1 px-4 py-3 bg-secondary-200 rounded-xl" placeholder="The title">
+                <select
+                    id="course"
+                    name="course"
+                    autocomplete="course-name"
+                    class="max-w-lg block focus:ring-primary-500 focus:border-primary-500 w-full shadow-sm sm:max-w-xs sm:text-sm border-secondary-300 rounded-md"
+                    hx-get="{% url "modules_todo" %}"
+                    hx-trigger="change"
+                    hx-target="#modules"
+                    hx-swap="outerHTML"
+
+                >
+                    <option selected>Open this select menu</option>
+                    {% for course in courses %}
+                        <option value="{{ course.pk }}"> {{ course.name }}</option>
+                    {% endfor %}
+
+                </select>
+                <div id="modules">
+                    {% include "todo/partials/modules.html" %}
+                </div>
+
+
                 <button class="p-3 rounded-xl text-white bg-primary-500 hover:bg-primary-600">+</button>
             </form>
 
@@ -22,6 +45,13 @@
                 <div class="w-4/5">
                     <p class="px-6 text-xs font-medium text-primary-500 uppercase"> Title</p>
                 </div>
+                <div class="w-1/5">
+                    <p class="px-6 text-xs font-medium text-primary-500 uppercase"> Course</p>
+                </div>
+                <div class="w-1/5">
+                    <p class="px-6 text-xs font-medium text-primary-500 uppercase"> Module</p>
+                </div>
+
                 <div class="hidden md:block w-1/5 px-6 text-right">
                     <p class="text-xs font-medium text-primary-500 uppercase"> Actions</p>
                 </div>
